@@ -4,7 +4,7 @@ using System.Web;
 using System.Web.Routing;
 using Microsoft.AspNet.FriendlyUrls;
 
-namespace AspNetAuth0WSFedEmbeddedNemId
+namespace easyIDDemo
 {
     public static class RouteConfig
     {

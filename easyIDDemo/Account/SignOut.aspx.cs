@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace AspNetAuth0WSFedEmbeddedNemId.Account
+namespace easyIDDemo.Account
 {
     public partial class SignOut : System.Web.UI.Page
     {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Web;
 using System.Net;
 
-namespace AspNetAuth0WSFedEmbeddedNemId
+namespace easyIDDemo
 {
     public class WIFAntiXssModule : IHttpModule
     {

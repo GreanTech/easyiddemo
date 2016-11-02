@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AspNetAuth0WSFedEmbeddedNemId {
+namespace easyIDDemo {
     
     
     public partial class ViewSwitcher {

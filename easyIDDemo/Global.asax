@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="AspNetAuth0WSFedEmbeddedNemId.Global" Language="C#" %>
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="easyIDDemo.Global" Language="C#" %>

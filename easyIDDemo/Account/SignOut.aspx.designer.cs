@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AspNetAuth0WSFedEmbeddedNemId.Account
+namespace easyIDDemo.Account
 {
 
 

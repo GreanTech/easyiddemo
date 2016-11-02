@@ -9,7 +9,7 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace AspNetAuth0WSFedEmbeddedNemId
+namespace easyIDDemo
 {
     public partial class SiteMaster : MasterPage
     {

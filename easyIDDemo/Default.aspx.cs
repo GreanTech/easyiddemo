@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.UI;
 
-namespace AspNetAuth0WSFedEmbeddedNemId
+namespace easyIDDemo
 {
     public partial class _Default : Page
     {

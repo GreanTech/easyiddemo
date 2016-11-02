@@ -4,7 +4,7 @@ using System.Configuration;
 using System.IdentityModel.Services;
 using System.Linq;
 
-namespace AspNetAuth0WSFedEmbeddedNemId
+namespace easyIDDemo
 {
     // For more information on ASP.NET Identity, please visit http://go.microsoft.com/fwlink/?LinkId=301882
     public static class IdentityConfig 
