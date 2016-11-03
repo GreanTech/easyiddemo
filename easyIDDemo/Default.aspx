@@ -44,7 +44,7 @@
             </div>
         </div>
         <div class="col-md-5 pull-right text-muted">
-            <br /><span><%=this.AuthHint %></span><br /><span>Further details can be found <a href="<%= this.MoreDetails %>">here</a></span></p>
+            <br /><span><%=this.AuthHint %></span><br /><span>Further details can be found <a href="<%= this.MoreDetails %>">here</a></span>
         </div>
         <% } %>
     </div>
