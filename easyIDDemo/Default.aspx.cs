@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
 using System.Web.UI;
 
 namespace easyIDDemo
@@ -61,6 +63,17 @@ namespace easyIDDemo
             get
             {
                 return this.hints[this.authMethod].MoreDetails;
+            }
+        }
+
+        public IEnumerable<Claim> Claims
+        {
+            get
+            {
+                var cp = User as ClaimsPrincipal;
+                if (cp == null) return Enumerable.Empty<Claim>();
+
+                return cp.Claims;
             }
         }
 

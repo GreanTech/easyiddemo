@@ -10,7 +10,15 @@
         <p>These examples will work with any .NET web site, from plain-vanilla ASP.NET (MVC and WebForms alike), over Sharepoint, to SiteCore and beyond.</p>        
     </div>
     <% if (User.Identity.IsAuthenticated) { %>
-        <p>Hi there, <%= Context.User.Identity.Name %>!</p>
+        <p>Hi there, <code><%= Context.User.Identity.Name %></code>! Here's what we now know about you:</p>
+    <table class="table table-striped">
+        <thead><tr><th>Claim type</th><th>Value</th></tr></thead>
+        <tbody>
+            <% foreach (var claim in this.Claims) { %>
+                <tr><td><%=claim.Type%></td><td><%=claim.Value%></td></tr>
+            <% } %>                
+        </tbody>
+    </table>
     <% } else { %>
         <div class="col-md-10">
             <asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow" AutoPostBack="true">
