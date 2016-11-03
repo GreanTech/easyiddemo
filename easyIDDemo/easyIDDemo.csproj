@@ -118,7 +118,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\SignOut.aspx" />
-    <Content Include="UserProfile.aspx" />
+    <Content Include="Logout.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
@@ -188,14 +188,14 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="WIFAntiXssModule.cs" />
-    <Compile Include="UserProfile.aspx.cs">
-      <DependentUpon>UserProfile.aspx</DependentUpon>
+    <Compile Include="Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="UserProfile.aspx.designer.cs">
-      <DependentUpon>UserProfile.aspx</DependentUpon>
+    <Compile Include="Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WIFAntiXssModule.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

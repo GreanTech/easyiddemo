@@ -51,11 +51,8 @@
                 <div class="navbar-collapse collapse">
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <LoggedInTemplate>
-                            <ul class="nav navbar-nav">
-                                <li><a runat="server" href="~/UserProfile">My Page</a></li>
-                            </ul>
                             <ul class="nav nav-pills nav-stacked pull-right">
-                                <li class="navbar-text">Hello, <%: Context.User.Identity.Name  %>!</li>
+                                <li class="navbar-text"><a href="Logout">Logout</a></li>
                             </ul>
                         </LoggedInTemplate>
                     </asp:LoginView>
@@ -67,7 +64,8 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
+                <p class="pull-left">You can sign up for a free easyID test account on <a href="https://www.grean.com">grean.com</a></p>
+                <p class="pull-right">Source code is on <a href="https://www.github.com/greantech/easyiddemo">GitHub</a></p>
             </footer>
         </div>
     </form>
