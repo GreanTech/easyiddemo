@@ -8,12 +8,9 @@
         <p class="text-info">Welcome to the Grean easyID .NET demo site!</p>
         <p>Here, you'll find a working example of how to easily integrate various national login offerings into your web site.</p>
         <p>These examples will work with any .NET web site, from plain-vanilla ASP.NET (MVC and WebForms alike), over Sharepoint, to SiteCore and beyond.</p>        
-        </p>
     </div>
     <% if (User.Identity.IsAuthenticated) { %>
-        <p>
-            <p>Hi there, <%= Context.User.Identity.Name %>!</p>
-        </p>
+        <p>Hi there, <%= Context.User.Identity.Name %>!</p>
     <% } else { %>
         <div class="col-md-10">
             <asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow" AutoPostBack="true">
@@ -42,7 +39,8 @@
 
         <div class="col-md-5">
             <div id="login">
-                <iframe src="Login.aspx?authMethod=<%= this.AuthMethod %>" id="easyid" title="easyID" allowfullscreen="true" scrolling="no" frameborder="0" style="width:500px;height:300px;border:0px"></iframe>
+                <iframe src="Login.aspx?authMethod=<%= this.AuthMethod %>" id="easyid" title="easyID" align="middle"
+                    allowfullscreen="true" scrolling="no" frameborder="0" style="width:500px;height:300px;border:0px"></iframe>
             </div>
         </div>
         <% } %>
