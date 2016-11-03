@@ -30,7 +30,7 @@
             // Listen to message from child window
             eventer(messageEvent, function (e) {
                 if (e && e.data && e.origin === '<%= Request.Url.GetLeftPart(UriPartial.Authority) %>' && e.data.userLoggedIn) {
-                    window.location = '/Contact';
+                    window.location = '/UserProfile';
                 }
             }, false);
         </script>

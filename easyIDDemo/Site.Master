@@ -49,11 +49,11 @@
                     <a class="navbar-brand" runat="server" href="~/">easyID Demo</a>
                 </div>
                 <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/UserProfile">My Page</a></li>
-                    </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <LoggedInTemplate>
+                            <ul class="nav navbar-nav">
+                                <li><a runat="server" href="~/UserProfile">My Page</a></li>
+                            </ul>
                             <ul class="nav nav-pills nav-stacked pull-right">
                                 <li class="navbar-text">Hello, <%: Context.User.Identity.Name  %>!</li>
                             </ul>

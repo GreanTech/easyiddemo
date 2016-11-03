@@ -10,7 +10,7 @@
 namespace easyIDDemo {
     
     
-    public partial class Contact {
+    public partial class UserProfile {
         
         /// <summary>
         /// LogoutButton control.
