@@ -37,10 +37,10 @@
             }, false);
         </script>
 
-        <div class="col-md-5 pull-left">
+        <div class="col-md-6 pull-left">
             <div id="login">
-                <iframe src="Login.aspx?authMethod=<%= this.AuthMethod %>" id="easyid" title="easyID"
-                    allowfullscreen="true" scrolling="no" frameborder="0" style="width:500px;height:300px;border:0px"></iframe>
+                <iframe src="Login.aspx?authMethod=<%= this.AuthMethod %>" id="easyid" title="easyID" class="login-frame-<%=this.AuthMethod %>"
+                    allowfullscreen="true" scrolling="no" frameborder="0"></iframe>
             </div>
         </div>
         <div class="col-md-5 pull-right text-muted">
