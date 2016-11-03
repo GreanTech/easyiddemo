@@ -37,11 +37,14 @@
             }, false);
         </script>
 
-        <div class="col-md-5">
+        <div class="col-md-5 pull-left">
             <div id="login">
-                <iframe src="Login.aspx?authMethod=<%= this.AuthMethod %>" id="easyid" title="easyID" align="middle"
+                <iframe src="Login.aspx?authMethod=<%= this.AuthMethod %>" id="easyid" title="easyID"
                     allowfullscreen="true" scrolling="no" frameborder="0" style="width:500px;height:300px;border:0px"></iframe>
             </div>
+        </div>
+        <div class="col-md-5 pull-right text-muted">
+            <br /><span><%=this.AuthHint %></span><br /><span>Further details can be found <a href="<%= this.MoreDetails %>">here</a></span></p>
         </div>
         <% } %>
     </div>
