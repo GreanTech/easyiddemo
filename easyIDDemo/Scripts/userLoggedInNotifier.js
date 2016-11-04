@@ -1,0 +1,1 @@
+﻿parent.postMessage({ userLoggedIn: true }, document.location.origin);

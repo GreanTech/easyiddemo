@@ -10,7 +10,7 @@
         <p>These examples will work with any .NET web site, from plain-vanilla ASP.NET (MVC and WebForms alike), over Sharepoint, to SiteCore and beyond.</p>        
     </div>
     <% if (User.Identity.IsAuthenticated) { %>
-        <p>Hi there, <code><%= Context.User.Identity.Name %></code>! Here's what we now know about you:</p>
+        <p>Hi there, <code><%= Context.User.Identity.Name %></code>! Here's what easyID tells us about you:</p>
     <table class="table table-striped">
         <thead><tr><th>Claim type</th><th>Value</th></tr></thead>
         <tbody>
@@ -31,20 +31,7 @@
         <% } %>
     <div class="row">
         <% if (!User.Identity.IsAuthenticated) { %>
-
-        <script type="text/javascript">
-            var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
-            var eventer = window[eventMethod];
-            var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
-
-            // Listen to message from child window
-            eventer(messageEvent, function (e) {
-                if (e && e.data && e.origin === '<%= Request.Url.GetLeftPart(UriPartial.Authority) %>' && e.data.userLoggedIn) {
-                    window.location = '/';
-                }
-            }, false);
-        </script>
-
+        <script type="text/javascript" src="Scripts/userLoggedInListener.js"></script>
         <div class="col-md-6 pull-left">
             <div id="login">
                 <iframe src="Login.aspx?authMethod=<%= this.AuthMethod %>" id="easyid" title="easyID" class="login-frame-<%=this.AuthMethod %>"

@@ -10,10 +10,7 @@
     <form id="form1" runat="server">
     <div>
         <% if (User.Identity.IsAuthenticated) { %>            
-            <script type="text/javascript">
-                parent.postMessage({ loggedOutFromGauss: true }, "*");
-                parent.postMessage({ userLoggedIn: true }, '<%= Request.Url.GetLeftPart(UriPartial.Authority) %>');
-            </script>
+            <script type="text/javascript" src="Scripts/userLoggedInNotifier.js"></script>
         <% } %>
     </div>
     </form>
