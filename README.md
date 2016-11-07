@@ -29,5 +29,32 @@ feel free to skip the rest of this README, and dive straight in to the repo.
 If not, a detailed guide follows below. 
 
 ## Getting started
+By far, the easiest way to go about this is to create a new, throw-away, web project, and let the `Change Authentication` wizard do the heavy lifting.
+You can then simply copy the relevant parts of the generated `web.config` to your actual web site's config file (see checklist below for elements to copy). 
+To complete the wizard, you need the DNS name that you chose for your `easyID` test tenant domain, and the `realm` value that you chose in `easyID` for your application.
+You will also need to have a live Internet connection, and the ability to download an XML file from `easyID`. 
+For comparison, this demo uses the following values:
+- `YOUR-easyID-TEST-DNS-DOMAIN = https://easyid.www.prove.id`
+- `YOUR-APP-REALM = urn:grn:app:easyid-demo`
 
+These values are referred to in the list below as `YOUR-easyID-TEST-DNS-DOMAIN` and `YOUR-APP-REALM`:
+- Go to `File -> New -> Project`. The `New Project` popup opens.
+- Choose `Templates -> Visual C# -> Web` (YMMV if you don't have C# installed).
+- Select `ASP.NET Web Application` and click the `OK` button
+- Choose either of the `Web Forms`, `MVC` or `Web API` templates in the `ASP.NET 4.6.1 Templates` section 
+(YMMV if you use another version of ASP.NET). The important thing is to choose one where the `Change Authentication` button is enabled.
+- Click the `Change Authentication` button - the `Change Authentication` popup opens.
+- Select the `Work And School Accounts` radio button option
+- Select `On-Premises` in the dropdown menu on the right-hand side of the dialog
+- Enter `https://YOUR-easyID-TEST-DNS-DOMAIN/metadata/wsfed` in the `On-Premises Authority:` field
+- Enter `YOUR-APP-REALM` in the `App ID URI:` field
+- Click the `OK` button. If the `Change Authentication` popup closes by itself, you should be good to proceed. 
+Otherwise, check for type-o's in the `On-Premises Authority`  field. That is the most likely cause of problems.
+If there is no type-o, try opening the same URL in a browser on the same machine that your VS instance runs on.
+This should download/offer to download an XML file (YMMV depending on the browser you use).
+If it does not, please check your network connectivity, or for signs of any corporate firewall and/or download restrictions getting in your way.
+- Click the `OK` button in the `New ASP.NET Project` dialog, and let VS set up the scaffolding.
 
+After VS finishes creating the project, navigate to the `web.config` file and follow the guide below to find the relevant elements to copy to your real `web.config` file.
+
+## Config elements to copy
