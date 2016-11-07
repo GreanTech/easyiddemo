@@ -7,7 +7,7 @@
     <div class="jumbotron">
         <p class="text-info">Welcome to the Grean easyID .NET demo site!</p>
         <p>Here, you'll find a working example of how to easily integrate various national login offerings into your web site.</p>
-        <p>These examples will work with any .NET web site, from plain-vanilla ASP.NET (MVC and WebForms alike), over Sharepoint, to SiteCore and beyond.</p>        
+        <p>This sample will work with any .NET web site, from plain-vanilla ASP.NET (MVC and WebForms alike), over Sharepoint, to SiteCore and beyond.</p>        
     </div>
     <% if (User.Identity.IsAuthenticated) { %>
         <p>Hi there, <code><%= Context.User.Identity.Name %></code>! Here's what easyID tells us about you:</p>
