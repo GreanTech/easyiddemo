@@ -44,7 +44,7 @@
             }
             var authMethod = '<%=this.AuthMethod %>';
             var loginUrl = 'Login.aspx?authMethod=' + authMethod;
-            if (/forceRedirect/.test(document.location) || isiOS() && authMethod == 'sbid-local')
+            if (isiOS() && authMethod == 'sbid-local')
             {
                 console.log('Same-device SE bankid on iOS detected. Redirecting');
                 document.location = loginUrl;
