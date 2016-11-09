@@ -34,10 +34,26 @@
         <script type="text/javascript" src="Scripts/userLoggedInListener.js"></script>
         <div class="col-md-6 pull-left">
             <div id="login">
-                <iframe src="Login.aspx?authMethod=<%= this.AuthMethod %>" id="easyid" title="easyID" class="login-frame-<%=this.AuthMethod %>"
-                    allowfullscreen="true" scrolling="no" frameborder="0"></iframe>
+                <iframe src="" id="easyid" title="easyID" class="login-frame-<%=this.AuthMethod %>"
+                    allowfullscreen="true" scrolling="no" frameborder="0" class="hidden-frame"></iframe>
             </div>
         </div>
+        <script type="text/javascript">
+            var isiOS = function () {
+                return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+            }
+            var authMethod = '<%=this.AuthMethod %>';
+            var loginUrl = 'Login.aspx?authMethod=' + authMethod;
+            if (isiOS() && authMethod == 'sbid-local')
+            {
+                console.log('Same-device SE bankid on iOS detected. Redirecting');
+                document.location = loginUrl;
+            } else {
+                var frame = document.getElementById('easyid');
+                frame.src = loginUrl;
+                frame.class = 'visible-frame';
+            }
+        </script>
         <div class="col-md-5 pull-right text-muted">
             <br /><span><%=this.AuthHint %></span><br /><span>Further details can be found <a href="<%= this.MoreDetails %>">here</a></span>
         </div>

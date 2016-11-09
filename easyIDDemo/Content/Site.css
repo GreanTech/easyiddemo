@@ -57,3 +57,11 @@ textarea {
     height: 1px;
     border: 0px;
 }
+
+.hidden-frame {
+    display: none
+}
+
+.visible-frame {
+    display: block
+}
