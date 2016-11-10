@@ -4,12 +4,12 @@
     <!-- Workaround to please IntelliSense (see http://stackoverflow.com/questions/31886413/the-name-o-does-not-exist-in-the-current-context/31886588#31886588): --> 
     <%="" %>
 
+    <% if (!User.Identity.IsAuthenticated) { %>
     <div class="jumbotron">
         <p class="text-info">Welcome to the Grean easyID .NET demo site!</p>
         <p>Here, you'll find a working example of how to easily integrate various national login offerings into your web site.</p>
         <p>This sample will work with any .NET web site, from plain-vanilla ASP.NET (MVC and WebForms alike), over Sharepoint, to SiteCore and beyond.</p>        
     </div>
-    <% if (!User.Identity.IsAuthenticated) { %>
     <div class="row">
         <div class="col-lg-6">
             <div class="input-group">
