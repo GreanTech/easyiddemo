@@ -6,6 +6,13 @@ using System.Web.UI;
 
 namespace easyIDDemo
 {
+    public class ClaimRendition
+    {
+        public string Attribute;
+        public string Type;
+        public string TechIdentifier;
+    }
+
     public partial class _Default : Page
     {
         private class DetailInfo { public string AuthHint; public string MoreDetails; }
@@ -66,17 +73,26 @@ namespace easyIDDemo
             }
         }
 
-        public IEnumerable<Claim> Claims
+        public IEnumerable<ClaimRendition> Claims
         {
             get
             {
                 var cp = User as ClaimsPrincipal;
-                if (cp == null) return Enumerable.Empty<Claim>();
+                if (cp == null) return Enumerable.Empty<ClaimRendition>();
 
-                return cp.Claims;
+                return cp.Claims.Select(ToClaimRendition);
             }
         }
 
+        private ClaimRendition ToClaimRendition(Claim claim)
+        {
+            return new ClaimRendition
+            {
+                Attribute = claim.Value,
+                Type = claim.Type.Split('/').Last(),
+                TechIdentifier = claim.Type
+            };
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (this.IsPostBack)

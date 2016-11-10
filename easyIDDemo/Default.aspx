@@ -30,10 +30,10 @@
     <div class="row">
         
         <table class="table table-striped">
-            <thead><tr><th>Claim type</th><th>Value</th></tr></thead>
+            <thead><tr><th>Attribute</th><th>Type</th><th>Tech identifier</th></tr></thead>
             <tbody>
                 <% foreach (var claim in this.Claims) { %>
-                    <tr><td><%=claim.Type%></td><td><%=claim.Value%></td></tr>
+                    <tr><td><%=claim.Attribute%></td><td><%=claim.Type%></td><td><%=claim.TechIdentifier%></td></tr>
                 <% } %>
             </tbody>
         </table>
