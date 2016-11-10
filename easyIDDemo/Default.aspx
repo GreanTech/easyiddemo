@@ -4,7 +4,22 @@
     <!-- Workaround to please IntelliSense (see http://stackoverflow.com/questions/31886413/the-name-o-does-not-exist-in-the-current-context/31886588#31886588): --> 
     <%="" %>
 
-    <% if (!User.Identity.IsAuthenticated) { %>
+    <% if (User.Identity.IsAuthenticated) { %>
+    <div class="jumbotron">
+        Hi there, <code><%= Context.User.Identity.Name %></code>! Here's what easyID tells us about you
+    </div>
+    <div class="row">
+        
+        <table class="table table-striped">
+            <thead><tr><th>Attribute</th><th>Type</th><th>Tech identifier</th></tr></thead>
+            <tbody>
+                <% foreach (var claim in this.Claims) { %>
+                    <tr><td><%=claim.Attribute%></td><td><%=claim.Type%></td><td><%=claim.TechIdentifier%></td></tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+    <% } else { %>
     <div class="jumbotron">
         <p class="text-info">Welcome to the Grean easyID .NET demo site!</p>
         <p>Here, you'll find a working example of how to easily integrate various national login offerings into your web site.</p>
@@ -22,23 +37,6 @@
             </div>
         </div>
     </div>
-    <% } %>
-    <% if (User.Identity.IsAuthenticated) { %>
-    <div class="jumbotron">
-        <p>Hi there, <code><%= Context.User.Identity.Name %></code>! Here's what easyID tells us about you:</p>
-    </div>
-    <div class="row">
-        
-        <table class="table table-striped">
-            <thead><tr><th>Attribute</th><th>Type</th><th>Tech identifier</th></tr></thead>
-            <tbody>
-                <% foreach (var claim in this.Claims) { %>
-                    <tr><td><%=claim.Attribute%></td><td><%=claim.Type%></td><td><%=claim.TechIdentifier%></td></tr>
-                <% } %>
-            </tbody>
-        </table>
-    </div>
-    <% } else { %>
     <script type="text/javascript" src="Scripts/userLoggedInListener.js"></script>
     <div class="row">
         <div id="login">
