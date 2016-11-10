@@ -24,8 +24,11 @@
     </div>
     <% } %>
     <% if (User.Identity.IsAuthenticated) { %>
-    <div class="row">
+    <div class="jumbotron">
         <p>Hi there, <code><%= Context.User.Identity.Name %></code>! Here's what easyID tells us about you:</p>
+    </div>
+    <div class="row">
+        
         <table class="table table-striped">
             <thead><tr><th>Claim type</th><th>Value</th></tr></thead>
             <tbody>
