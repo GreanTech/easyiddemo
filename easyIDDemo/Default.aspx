@@ -11,13 +11,15 @@
     </div>
     <% if (!User.Identity.IsAuthenticated) { %>
     <div class="row">
-        <div class="col-md-10">
-            <asp:DropDownList runat="server" AutoPostBack="true" ID="DropDownList">
-                <asp:ListItem Enabled="true" Selected="True" Text="NO BankID kodebrik" Value="nobid-central" class="margin-right-radio"></asp:ListItem>
-                <asp:ListItem Enabled="true" Selected="False" Text="NO BankID mobil" Value="nobid-mobile" class="margin-right-radio"></asp:ListItem>
-                <asp:ListItem Enabled="true" Selected="False" Text="SE BankID annan enhet" Value="sbid" class="margin-right-radio"></asp:ListItem>
-                <asp:ListItem Enabled="true" Selected="False" Text="SE BankID denna enhet" Value="sbid-local" class="margin-right-radio"></asp:ListItem>
-            </asp:DropDownList>
+        <div class="col-lg-6">
+            <div class="input-group">
+                <asp:DropDownList runat="server" AutoPostBack="true" ID="DropDownList" CssClass="form-control">
+                    <asp:ListItem Enabled="true" Selected="True" Text="NO BankID kodebrik" Value="nobid-central"></asp:ListItem>
+                    <asp:ListItem Enabled="true" Selected="False" Text="NO BankID mobil" Value="nobid-mobile"></asp:ListItem>
+                    <asp:ListItem Enabled="true" Selected="False" Text="SE BankID annan enhet" Value="sbid"></asp:ListItem>
+                    <asp:ListItem Enabled="true" Selected="False" Text="SE BankID denna enhet" Value="sbid-local"></asp:ListItem>
+                </asp:DropDownList>
+            </div>
         </div>
     </div>
     <% } %>
@@ -28,7 +30,7 @@
         <tbody>
             <% foreach (var claim in this.Claims) { %>
                 <tr><td><%=claim.Type%></td><td><%=claim.Value%></td></tr>
-            <% } %>                
+            <% } %>
         </tbody>
     </table>
     <% } else { %>
