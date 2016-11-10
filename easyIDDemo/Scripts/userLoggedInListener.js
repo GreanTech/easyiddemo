@@ -6,7 +6,11 @@ var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
 // For this demo, we stay on the home page, but you could certainly add some more
 // refined logic for taking the user to a better place.
 eventer(messageEvent, function (e) {
-    if (e && e.data && e.origin === document.location.origin && e.data.userLoggedIn) {
+    var origin =
+        document.location.origin ||
+        document.location.protocol + "//" + document.location.host;
+
+    if (e && e.data && e.origin === origin && e.data.userLoggedIn) {
         window.location = '/';
     }
 }, false);
