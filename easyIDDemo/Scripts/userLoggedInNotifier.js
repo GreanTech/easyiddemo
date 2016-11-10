@@ -5,13 +5,14 @@
         return true;
     }
 }
-var target = window;
 if (isInIframe()) {
-    target = parent;
+    var target = parent;
+    var origin =
+        document.location.origin ||
+        document.location.protocol + "//" + document.location.host;
+    var message = { userLoggedIn: true };
+    target.postMessage(message, origin);
+} else {
+    document.location = "/";
 }
 
-var origin =
-    document.location.origin ||
-    document.location.protocol + "//" + document.location.host;
-var message = { userLoggedIn: true };
-target.postMessage(message, origin);
