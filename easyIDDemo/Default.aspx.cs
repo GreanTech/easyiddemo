@@ -89,7 +89,7 @@ namespace easyIDDemo
             return new ClaimRendition
             {
                 Attribute = claim.Value,
-                Type = claim.Type.Split('/').Last(),
+                Type = claim.Type.Split('/', ':').Last(),
                 TechIdentifier = claim.Type
             };
         }
