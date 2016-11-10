@@ -81,7 +81,8 @@ namespace easyIDDemo
         {
             if (this.IsPostBack)
             {
-                this.authMethod = this.RadioButtonList1.SelectedValue;
+                this.authMethod = this.DropDownList.SelectedValue;
+                //this.authMethod = this.RadioButtonList1.SelectedValue;
             }
         }
     }

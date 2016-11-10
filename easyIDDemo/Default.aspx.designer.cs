@@ -13,12 +13,12 @@ namespace easyIDDemo {
     public partial class _Default {
         
         /// <summary>
-        /// RadioButtonList1 control.
+        /// DropDownList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList1;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList;
     }
 }
