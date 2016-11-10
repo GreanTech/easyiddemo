@@ -24,15 +24,17 @@
     </div>
     <% } %>
     <% if (User.Identity.IsAuthenticated) { %>
-    <p>Hi there, <code><%= Context.User.Identity.Name %></code>! Here's what easyID tells us about you:</p>
-    <table class="table table-striped">
-        <thead><tr><th>Claim type</th><th>Value</th></tr></thead>
-        <tbody>
-            <% foreach (var claim in this.Claims) { %>
-                <tr><td><%=claim.Type%></td><td><%=claim.Value%></td></tr>
-            <% } %>
-        </tbody>
-    </table>
+    <div class="row">
+        <p>Hi there, <code><%= Context.User.Identity.Name %></code>! Here's what easyID tells us about you:</p>
+        <table class="table table-striped">
+            <thead><tr><th>Claim type</th><th>Value</th></tr></thead>
+            <tbody>
+                <% foreach (var claim in this.Claims) { %>
+                    <tr><td><%=claim.Type%></td><td><%=claim.Value%></td></tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
     <% } else { %>
     <script type="text/javascript" src="Scripts/userLoggedInListener.js"></script>
     <div class="row">
