@@ -48,8 +48,8 @@
         var isiOS = function () {
             return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
         }
-        var isMobileAndroidChrome = function() {
-            return /Android/.test(navigator.userAgent) && /Chrome\/[.0-9]* Mobile/.test(navigator.userAgent);
+        var isMobileAndroid = function() {
+            return /Android/.test(navigator.userAgent) && / Mobile/.test(navigator.userAgent);
         }
         var framed = function (loginUrl) {
             var frame = document.getElementById('easyid');
@@ -64,8 +64,8 @@
                 if (isiOS()) {
                     console.log('Same-device SE bankid on iOS detected. Redirecting');
                     return redirect;
-                } else if (isMobileAndroidChrome()) {
-                    console.log('Same-device SE bankid on mobile Android Chrome detected. Redirecting');
+                } else if (isMobileAndroid()) {
+                    console.log('Same-device SE bankid on mobile Android detected. Redirecting');
                     return redirect;
                 }
             }
