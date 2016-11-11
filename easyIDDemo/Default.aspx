@@ -48,17 +48,35 @@
         var isiOS = function () {
             return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
         }
-        var authMethod = '<%=this.AuthMethod %>';
-        var loginUrl = 'Login.aspx?authMethod=' + authMethod;
-        if (isiOS() && authMethod == 'sbid-local')
-        {
-            console.log('Same-device SE bankid on iOS detected. Redirecting');
-            document.location = loginUrl;
-        } else {
+        var isMobileAndroidChrome = function() {
+            return /Android/.test(navigator.userAgent) && /Chrome\/[.0-9]* Mobile/.test(navigator.userAgent);
+        }
+        var framed = function (loginUrl) {
             var frame = document.getElementById('easyid');
             frame.src = loginUrl;
             frame.class = 'visible-frame';
         }
+        var redirect = function (loginUrl) {
+            document.location = loginUrl;
+        }
+        var selectStrategy = function (authMethod) {
+            if (authMethod === 'sbid-local') {
+                if (isiOS()) {
+                    console.log('Same-device SE bankid on iOS detected. Redirecting');
+                    return redirect;
+                } else if (isMobileAndroidChrome()) {
+                    console.log('Same-device SE bankid on mobile Android Chrome detected. Redirecting');
+                    return redirect;
+                }
+            }
+
+            return framed;
+        }
+
+        var authMethod = '<%=this.AuthMethod %>';
+        var loginUrl = 'Login.aspx?authMethod=' + authMethod;
+        var strategy = selectStrategy(authMethod);
+        strategy(loginUrl);
     </script>
     <div class="row text-muted">
         <br /><span><%=this.AuthHint %></span><br /><span>Further details can be found <a href="<%= this.MoreDetails %>">here</a></span>
