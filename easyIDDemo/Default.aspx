@@ -52,10 +52,10 @@
             return testUA(/iPad|iPhone|iPod/) && !window.MSStream;
         }
         var isiOSSafari = function () {
-            return isIOS() && testUA(/ Safari\/[.0-9]*/) && !testUA(/ CriOS\/[.0-9]*/);
+            return isiOS() && testUA(/ Safari\/[.0-9]*/) && !testUA(/ CriOS\/[.0-9]*/);
         }
         var isiOSChrome = function () {
-            return isIOS() && testUA(/ CriOS\/[.0-9]*/);
+            return isiOS() && testUA(/ CriOS\/[.0-9]*/);
         }
         var isAndroid = function () { return testUA(/Android/); }
         var isWindowsPhone = function () { return testUA(/Windows Phone/i); }
