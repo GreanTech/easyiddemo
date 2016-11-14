@@ -45,8 +45,11 @@
         </div>
     </div>
     <script type="text/javascript">
-        var isiOS = function () {
-            return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        var isiOSSafari = function () {
+            return
+                /iPad|iPhone|iPod/.test(navigator.userAgent)
+                && / Safari\/[.0-9]*/.test(navigator.userAgent)
+                && !window.MSStream;
         }
 
         var isAndroid = function () {
@@ -82,8 +85,8 @@
                         console.log('Same-device SE bankid on WinPhone detected. Framing.');
                         return framed;
                     }
-                } else if (isiOS()) {
-                    console.log('Same-device SE bankid on iOS detected. Redirecting');
+                } else if (isiOSSafari()) {
+                    console.log('Same-device SE bankid on iOS Safari detected. Redirecting');
                     return redirect;
                 } else if (isAndroid()) {
                     console.log('Same-device SE bankid on Android detected. Redirecting');
