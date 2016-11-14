@@ -57,6 +57,10 @@
             return navigator.userAgent.match(/Windows Phone/i);
         }
 
+        var isWindowsPhone = function () {
+            return navigator.userAgent.match(/Windows Phone 8/i);
+        }
+
         var framed = function (loginUrl) {
             var frame = document.getElementById('easyid');
             frame.src = loginUrl;
@@ -69,8 +73,15 @@
             if (authMethod === 'sbid-local') {
                 if (isWindowsPhone()) {
                     // WinPhone 8 UA string contains 'Android', so handle it first
-                    console.log('Same-device SE bankid on WinPhone detected. Framing');
-                    return framed;
+                    if (isWindowsPhone8()) {
+                        // The reason to use redirect here is because WP8 mis-interprets
+                        // the X-Frame-Options ALLOW-FROM header that EasyID sends.
+                        console.log('Same-device SE bankid on WinPhone8 detected. Redirecting.');
+                        return redirect;
+                    } else {
+                        console.log('Same-device SE bankid on WinPhone detected. Framing.');
+                        return framed;
+                    }
                 } else if (isiOS()) {
                     console.log('Same-device SE bankid on iOS detected. Redirecting');
                     return redirect;
