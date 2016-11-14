@@ -53,6 +53,10 @@
             return /Android/.test(navigator.userAgent);
         }
 
+        var isWindowsPhone = function () {
+            return navigator.userAgent.match(/Windows Phone/i);
+        }
+
         var framed = function (loginUrl) {
             var frame = document.getElementById('easyid');
             frame.src = loginUrl;
@@ -63,7 +67,11 @@
         }
         var selectStrategy = function (authMethod) {
             if (authMethod === 'sbid-local') {
-                if (isiOS()) {
+                if (isWindowsPhone()) {
+                    // WinPhone 8 UA string contains 'Android', so handle it first
+                    console.log('Same-device SE bankid on WinPhone detected. Framing');
+                    return framed;
+                } else if (isiOS()) {
                     console.log('Same-device SE bankid on iOS detected. Redirecting');
                     return redirect;
                 } else if (isAndroid()) {
