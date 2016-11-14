@@ -45,21 +45,21 @@
         </div>
     </div>
     <script type="text/javascript">
+        var testUA = function (pattern) {
+            pattern.test(navigator.userAgent);
+        }
+        var isiOS = function () {
+            return testUA(/iPad|iPhone|iPod/) && !window.MSStream;
+        }
         var isiOSSafari = function () {
-            return /iPad|iPhone|iPod/.test(navigator.userAgent) && / Safari\/[.0-9]*/.test(navigator.userAgent) && !/ CriOS\/[.0-9]*/.test(navigator.userAgent) && !window.MSStream;
+            return isIOS() && testUA(/ Safari\/[.0-9]*/) && !testUA(/ CriOS\/[.0-9]*/);
         }
-
-        var isAndroid = function () {
-            return /Android/.test(navigator.userAgent);
+        var isiOSChrome = function () {
+            return isIOS() && testUA(/ CriOS\/[.0-9]*/);
         }
-
-        var isWindowsPhone = function () {
-            return navigator.userAgent.match(/Windows Phone/i);
-        }
-
-        var isWindowsPhone = function () {
-            return navigator.userAgent.match(/Windows Phone 8/i);
-        }
+        var isAndroid = function () { return testUA(/Android/); }
+        var isWindowsPhone = function () { return testUA(/Windows Phone/i); }
+        var isWindowsPhone8 = function () { return testUA(/Windows Phone 8/i); }
 
         var framed = function (loginUrl) {
             var frame = document.getElementById('easyid');
@@ -84,6 +84,9 @@
                     }
                 } else if (isiOSSafari()) {
                     console.log('Same-device SE bankid on iOS Safari detected. Redirecting');
+                    return redirect;
+                } else if (isiOSChrome()) {
+                    console.log('Same-device SE bankid on iOS Chrome detected. Redirecting');
                     return redirect;
                 } else if (isAndroid()) {
                     console.log('Same-device SE bankid on Android detected. Redirecting');
