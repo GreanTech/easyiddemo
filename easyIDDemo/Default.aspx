@@ -46,10 +46,7 @@
     </div>
     <script type="text/javascript">
         var isiOSSafari = function () {
-            return
-                /iPad|iPhone|iPod/.test(navigator.userAgent)
-                && / Safari\/[.0-9]*/.test(navigator.userAgent)
-                && !window.MSStream;
+            return /iPad|iPhone|iPod/.test(navigator.userAgent) && / Safari\/[.0-9]*/.test(navigator.userAgent) && !window.MSStream;
         }
 
         var isAndroid = function () {
