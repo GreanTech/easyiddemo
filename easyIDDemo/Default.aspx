@@ -52,7 +52,7 @@
             return testUA(/iPad|iPhone|iPod/) && !window.MSStream;
         }
         var isiOSSafari = function () {
-            return isiOS() && testUA(/ Safari\/[.0-9]*/) && !testUA(/ CriOS\/[.0-9]*/);
+            return isiOS() && !testUA(/ CriOS\/[.0-9]*/);
         }
         var isiOSChrome = function () {
             return isiOS() && testUA(/ CriOS\/[.0-9]*/);
