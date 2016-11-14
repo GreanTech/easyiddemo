@@ -62,8 +62,8 @@ select {
 }
 
 .login-frame-sbid-local {
-    width: 1px;
-    height: 1px;
+    width: 600px;
+    height: 300px;
     border: 0px;
 }
 
