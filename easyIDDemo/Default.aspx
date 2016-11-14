@@ -48,9 +48,23 @@
         var isiOS = function () {
             return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
         }
-        var isMobileAndroid = function() {
-            return /Android/.test(navigator.userAgent) && / Mobile/.test(navigator.userAgent);
+
+        var isAndroid = function () {
+            return /Android/.test(navigator.userAgent);
         }
+        var isMobileAndroid = function() {
+            return isAndroid() && / Mobile/.test(navigator.userAgent);
+        }
+        var isMobileAndroidFirefox = function() {
+            return isMobileAndroid() && / Firefox\/[.0-9]*/.test(navigator.userAgent);
+        }
+        var isMobileAndroidChrome = function() {
+            return isMobileAndroid() && / Chrome\/[.0-9]*/.test(navigator.userAgent);
+        }
+        var isUnknownMobileAndroid = function() {
+            return !isMobileAndroidFirefox() && !isMobileAndroidChrome();
+        }
+
         var framed = function (loginUrl) {
             var frame = document.getElementById('easyid');
             frame.src = loginUrl;
@@ -64,8 +78,8 @@
                 if (isiOS()) {
                     console.log('Same-device SE bankid on iOS detected. Redirecting');
                     return redirect;
-                } else if (isMobileAndroid()) {
-                    console.log('Same-device SE bankid on mobile Android detected. Redirecting');
+                } else if (isUnknownMobileAndroid()) {
+                    console.log('Same-device SE bankid on unknown mobile Android browser detected. Redirecting');
                     return redirect;
                 }
             }
