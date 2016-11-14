@@ -46,29 +46,29 @@
     </div>
     <script type="text/javascript">
         var testUA = function (pattern) {
-            pattern.test(navigator.userAgent);
-        }
+            return pattern.test(navigator.userAgent);
+        };
         var isiOS = function () {
             return testUA(/iPad|iPhone|iPod/) && !window.MSStream;
-        }
+        };
         var isiOSSafari = function () {
             return isiOS() && !testUA(/ CriOS\/[.0-9]*/);
-        }
+        };
         var isiOSChrome = function () {
             return isiOS() && testUA(/ CriOS\/[.0-9]*/);
-        }
-        var isAndroid = function () { return testUA(/Android/); }
-        var isWindowsPhone = function () { return testUA(/Windows Phone/i); }
-        var isWindowsPhone8 = function () { return testUA(/Windows Phone 8/i); }
+        };
+        var isAndroid = function () { return testUA(/Android/); };
+        var isWindowsPhone = function () { return testUA(/Windows Phone/i); };
+        var isWindowsPhone8 = function () { return testUA(/Windows Phone 8/i); };
 
         var framed = function (loginUrl) {
             var frame = document.getElementById('easyid');
             frame.src = loginUrl;
             frame.class = 'visible-frame';
-        }
+        };
         var redirect = function (loginUrl) {
             document.location = loginUrl;
-        }
+        };
         var selectStrategy = function (authMethod) {
             if (authMethod === 'sbid-local') {
                 if (isWindowsPhone()) {
@@ -96,7 +96,7 @@
             }
 
             return framed;
-        }
+        };
 
         var authMethod = '<%=this.AuthMethod %>';
         var loginUrl = 'Login.aspx?authMethod=' + authMethod;
