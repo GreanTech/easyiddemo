@@ -46,6 +46,18 @@ namespace easyIDDemo
                     {
                         AuthHint =  "You'll need to install the official BankId desktop app on your machine, and import test user keys",
                         MoreDetails = "https://www.bankid.com/assets/bankid/rp/how-to-get-bankid-for-test-v1.5.pdf"
+                    } },
+                { "dknemid-poces",
+                    new DetailInfo
+                    {
+                        AuthHint =  "You can find and create test users at https://appletk.danid.dk/testtools. Log in with user 'oces' and password 'nemid4all'",
+                        MoreDetails = "https://www.nets.eu/dk-da/kundeservice/nemid-tjenesteudbyder/NemID-tjenesteudbyderpakken/Pages/dokumentation.aspx"
+                    } },
+                { "dknemid-moces",
+                    new DetailInfo
+                    {
+                        AuthHint =  "You'll have to call NETS DanId support to get access to the test user creation system for Erhverv.",
+                        MoreDetails = "https://www.nets.eu/dk-da/kundeservice/nemid-tjenesteudbyder/NemID-tjenesteudbyderpakken/Pages/dokumentation.aspx"
                     } }
             };
         }
