@@ -33,6 +33,8 @@
                     <asp:ListItem Enabled="true" Selected="False" Text="NO BankID mobil" Value="nobid-mobile"></asp:ListItem>
                     <asp:ListItem Enabled="true" Selected="False" Text="SE BankID annan enhet" Value="sbid"></asp:ListItem>
                     <asp:ListItem Enabled="true" Selected="False" Text="SE BankID denna enhet" Value="sbid-local"></asp:ListItem>
+                    <asp:ListItem Enabled="true" Selected="False" Text="DK NemID privat" Value="dknemid-poces"></asp:ListItem>
+                    <asp:ListItem Enabled="true" Selected="False" Text="DK NemID erhverv" Value="dknemid-moces"></asp:ListItem>
                 </asp:DropDownList>
             </div>
         </div>

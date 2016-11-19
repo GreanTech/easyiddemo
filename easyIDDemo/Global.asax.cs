@@ -54,20 +54,20 @@ namespace easyIDDemo
                     e.SignInRequestMessage.AuthenticationType = "urn:grn:authn:se:bankid:same-device";
                     e.SignInRequestMessage.HomeRealm = "sbid-local";
                 }
-                else if (authMethod == "nemid")
+                else if (authMethod == "dknemid-poces")
                 {
-                    e.SignInRequestMessage.AuthenticationType = "urn:grn:authn:dk:nemid-poces";
-                    e.SignInRequestMessage.HomeRealm = "nemid-poces";
+                    e.SignInRequestMessage.AuthenticationType = "urn:grn:authn:dk:nemid:poces";
+                    e.SignInRequestMessage.HomeRealm = "dknemid-poces";
                 }
-                else if (authMethod == "nemid-moces")
+                else if (authMethod == "dknemid-moces")
                 {
-                    e.SignInRequestMessage.AuthenticationType = "urn:grn:authn:dk:nemid-moces";
-                    e.SignInRequestMessage.HomeRealm = "nemid-moces";
+                    e.SignInRequestMessage.AuthenticationType = "urn:grn:authn:dk:nemid:moces";
+                    e.SignInRequestMessage.HomeRealm = "dknemid-moces";
                 }
-                else if (authMethod == "oces")
+                else if (authMethod == "dknemid-codefile")
                 {
-                    e.SignInRequestMessage.AuthenticationType = "urn:grn:authn:dk:nemid-oces";
-                    e.SignInRequestMessage.HomeRealm = "nemid-oces";
+                    e.SignInRequestMessage.AuthenticationType = "urn:grn:authn:dk:nemid:codefile:moces";
+                    e.SignInRequestMessage.HomeRealm = "dknemid-codefile";
                 }
             }
         }
