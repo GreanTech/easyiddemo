@@ -18,6 +18,13 @@ namespace easyIDDemo
 
         void WSFederationAuthenticationModule_RedirectingToIdentityProvider(object sender, RedirectingToIdentityProviderEventArgs e)
         {
+            if (HttpContext.Current.Request.Url.Host == "www.prove.id")
+            {
+                var origBaseUri = new UriBuilder(e.SignInRequestMessage.BaseUri);
+                origBaseUri.Host = "easyid.www.prove.id";
+                e.SignInRequestMessage.BaseUri = origBaseUri.Uri;
+            }
+
             if (!String.IsNullOrEmpty(IdentityConfig.Realm))
             {
                 e.SignInRequestMessage.Realm = IdentityConfig.Realm;
