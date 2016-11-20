@@ -13,6 +13,12 @@ namespace easyIDDemo
         public string TechIdentifier;
     }
 
+    public class AuthMethodRendition
+    {
+        public string Name { get; set; }
+        public string Value { get; set; }
+    }
+
     public partial class _Default : Page
     {
         private class DetailInfo { public string AuthHint; public string MoreDetails; }
@@ -61,6 +67,30 @@ namespace easyIDDemo
                     } }
             };
         }
+
+        public AuthMethodRendition[] GetAuthMethods()
+        {
+            var productionReady = new[] {
+                new AuthMethodRendition { Name = "NO BankID kodebrik", Value = "nobid-central" },
+                new AuthMethodRendition { Name = "NO BankID mobil", Value = "nobid-mobile" },
+                new AuthMethodRendition { Name = "SE BankID denna enhet", Value = "sbid" },
+                new AuthMethodRendition { Name = "SE BankID annan enhet", Value = "sbid-local" }
+            };
+
+            if (this.Request.Url.Host == "www.grean.id")
+            {
+                return productionReady;
+            }
+
+            var inProgress = new[]
+            {
+                new AuthMethodRendition { Name = "DK NemID privat", Value = "dknemid-poces" },
+                new AuthMethodRendition { Name = "DK NemID erhverv", Value = "dknemid-moces" }
+            };
+
+            return productionReady.Concat(inProgress).ToArray();
+        }
+
         public string AuthMethod 
         { 
             get 

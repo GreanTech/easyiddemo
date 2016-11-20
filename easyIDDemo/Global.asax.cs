@@ -18,10 +18,10 @@ namespace easyIDDemo
 
         void WSFederationAuthenticationModule_RedirectingToIdentityProvider(object sender, RedirectingToIdentityProviderEventArgs e)
         {
-            if (HttpContext.Current.Request.Url.Host == "www.prove.id")
+            if (HttpContext.Current.Request.Url.Host == "www.grean.id")
             {
                 var origBaseUri = new UriBuilder(e.SignInRequestMessage.BaseUri);
-                origBaseUri.Host = "easyid.www.prove.id";
+                origBaseUri.Host = "easyid.www.grean.id";
                 e.SignInRequestMessage.BaseUri = origBaseUri.Uri;
             }
 

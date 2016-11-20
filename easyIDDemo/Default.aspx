@@ -28,22 +28,19 @@
     <div class="row">
         <div class="col-lg-6">
             <div class="input-group">
-                <asp:DropDownList runat="server" AutoPostBack="true" ID="DropDownList" CssClass="form-control">
-                    <asp:ListItem Enabled="true" Selected="True" Text="NO BankID kodebrik" Value="nobid-central"></asp:ListItem>
-                    <asp:ListItem Enabled="true" Selected="False" Text="NO BankID mobil" Value="nobid-mobile"></asp:ListItem>
-                    <asp:ListItem Enabled="true" Selected="False" Text="SE BankID annan enhet" Value="sbid"></asp:ListItem>
-                    <asp:ListItem Enabled="true" Selected="False" Text="SE BankID denna enhet" Value="sbid-local"></asp:ListItem>
-                    <asp:ListItem Enabled="true" Selected="False" Text="DK NemID privat" Value="dknemid-poces"></asp:ListItem>
-                    <asp:ListItem Enabled="true" Selected="False" Text="DK NemID erhverv" Value="dknemid-moces"></asp:ListItem>
+                <asp:DropDownList runat="server" AutoPostBack="true" ID="DropDownList" CssClass="form-control" 
+                    SelectMethod="GetAuthMethods"  DataTextField="Name" DataValueField="Value">
                 </asp:DropDownList>
             </div>
         </div>
     </div>
     <script type="text/javascript" src="Scripts/userLoggedInListener.js"></script>
     <div class="row">
-        <div id="login">
-            <iframe src="" id="easyid" title="easyID" class="login-frame-<%=this.AuthMethod %>"
-                allowfullscreen="true" scrolling="no" frameborder="0" class="hidden-frame"></iframe>
+        <div class="col-lg-6">
+            <div id="login">
+                <iframe src="" id="easyid" title="easyID" class="login-frame-<%=this.AuthMethod %>"
+                    allowfullscreen="true" scrolling="no" frameborder="0" class="hidden-frame"></iframe>
+            </div>
         </div>
     </div>
     <script type="text/javascript">
