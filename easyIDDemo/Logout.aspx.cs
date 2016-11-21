@@ -22,6 +22,10 @@ namespace easyIDDemo
                     new Uri(FederatedAuthentication.FederationConfiguration.WsFederationConfiguration.Issuer, UriKind.Absolute),
                     ub.Uri);
             }
+            else
+            {
+                Response.Redirect("/");
+            }
         }
     }
 }

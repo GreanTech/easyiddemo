@@ -73,8 +73,8 @@ namespace easyIDDemo
             var productionReady = new[] {
                 new AuthMethodRendition { Name = "NO BankID kodebrik", Value = "nobid-central" },
                 new AuthMethodRendition { Name = "NO BankID mobil", Value = "nobid-mobile" },
-                new AuthMethodRendition { Name = "SE BankID denna enhet", Value = "sbid" },
-                new AuthMethodRendition { Name = "SE BankID annan enhet", Value = "sbid-local" }
+                new AuthMethodRendition { Name = "SE BankID denna enhet", Value = "sbid-local" },
+                new AuthMethodRendition { Name = "SE BankID annan enhet", Value = "sbid" }
             };
 
             if (this.Request.Url.Host == "www.grean.id")
