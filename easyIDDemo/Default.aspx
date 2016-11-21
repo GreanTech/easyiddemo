@@ -29,7 +29,7 @@
         <div class="col-lg-6">
             <div class="input-group">
                 <asp:DropDownList runat="server" AutoPostBack="true" ID="DropDownList" CssClass="form-control" 
-                    SelectMethod="GetAuthMethods"  DataTextField="Name" DataValueField="Value">
+                    SelectMethod="GetAuthMethods"  DataTextField="Name" DataValueField="Value" >
                 </asp:DropDownList>
             </div>
         </div>

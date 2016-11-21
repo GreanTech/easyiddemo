@@ -16,13 +16,19 @@ namespace easyIDDemo
             IdentityConfig.ConfigureIdentity();
         }
 
+        private void SetIdPHost(string newHostName, SignInRequestMessage m)
+        {
+            var origBaseUri = new UriBuilder(m.BaseUri);
+            origBaseUri.Host = newHostName;
+            m.BaseUri = origBaseUri.Uri;
+        }
+
         void WSFederationAuthenticationModule_RedirectingToIdentityProvider(object sender, RedirectingToIdentityProviderEventArgs e)
         {
-            if (HttpContext.Current.Request.Url.Host == "www.grean.id")
+            var host = HttpContext.Current.Request.Url.Host;
+            if (host == "www.grean.id")
             {
-                var origBaseUri = new UriBuilder(e.SignInRequestMessage.BaseUri);
-                origBaseUri.Host = "easyid.www.grean.id";
-                e.SignInRequestMessage.BaseUri = origBaseUri.Uri;
+                SetIdPHost("easyid.www.grean.id", e.SignInRequestMessage);
             }
 
             if (!String.IsNullOrEmpty(IdentityConfig.Realm))
