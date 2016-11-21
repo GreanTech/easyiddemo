@@ -27,7 +27,8 @@ namespace easyIDDemo
         {
             key = null;
             SecurityToken token = null;
-            if (base.TryResolveToken(keyIdentifierClause, out token) && (token.SecurityKeys.Count > 0))
+            if (base.TryResolveToken(keyIdentifierClause, out token) 
+                && (token.SecurityKeys.Count > 0))
             {
                 key = token.SecurityKeys[0];
                 return true;
@@ -67,6 +68,7 @@ namespace easyIDDemo
             X509RawDataKeyIdentifierClause clause4 = keyIdentifierClause as X509RawDataKeyIdentifierClause;
             if ((clause4 != null) && TryMatchCertificates(clause4.Matches, out matched))
             {
+                token = new X509SecurityToken(matched);
                 return true;
             }
 
