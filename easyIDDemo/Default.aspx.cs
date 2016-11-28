@@ -64,6 +64,12 @@ namespace easyIDDemo
                     {
                         AuthHint =  "You'll have to call NETS DanId support to get access to the test user creation system for Erhverv.",
                         MoreDetails = "https://www.nets.eu/dk-da/kundeservice/nemid-tjenesteudbyder/NemID-tjenesteudbyderpakken/Pages/dokumentation.aspx"
+                    } },
+                { "dknemid-moces-codefile",
+                    new DetailInfo
+                    {
+                        AuthHint =  "You'll have to call NETS DanId support to get access to the test user creation system for Erhverv codefile.",
+                        MoreDetails = "https://www.nets.eu/dk-da/kundeservice/nemid-tjenesteudbyder/NemID-tjenesteudbyderpakken/Pages/dokumentation.aspx"
                     } }
             };
         }
@@ -85,7 +91,8 @@ namespace easyIDDemo
             var inProgress = new[]
             {
                 new AuthMethodRendition { Name = "DK NemID privat", Value = "dknemid-poces" },
-                new AuthMethodRendition { Name = "DK NemID erhverv", Value = "dknemid-moces" }
+                new AuthMethodRendition { Name = "DK NemID erhverv", Value = "dknemid-moces" },
+                new AuthMethodRendition { Name = "DK NemID nøglefil (erhverv)", Value = "dknemid-moces-codefile" }
             };
 
             return productionReady.Concat(inProgress).ToArray();

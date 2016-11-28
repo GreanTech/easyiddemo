@@ -77,10 +77,10 @@ namespace easyIDDemo
                     e.SignInRequestMessage.AuthenticationType = "urn:grn:authn:dk:nemid:moces";
                     e.SignInRequestMessage.HomeRealm = "dknemid-moces";
                 }
-                else if (authMethod == "dknemid-codefile")
+                else if (authMethod == "dknemid-moces-codefile")
                 {
-                    e.SignInRequestMessage.AuthenticationType = "urn:grn:authn:dk:nemid:codefile:moces";
-                    e.SignInRequestMessage.HomeRealm = "dknemid-codefile";
+                    e.SignInRequestMessage.AuthenticationType = "urn:grn:authn:dk:nemid:moces:codefile";
+                    e.SignInRequestMessage.HomeRealm = "dknemid-moces-codefile";
                 }
             }
         }
