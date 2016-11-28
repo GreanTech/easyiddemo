@@ -62,14 +62,20 @@ namespace easyIDDemo
                 { "dknemid-moces",
                     new DetailInfo
                     {
-                        AuthHint =  "You'll have to call NETS DanId support to get access to the test user creation system for Erhverv.",
-                        MoreDetails = "https://www.nets.eu/dk-da/kundeservice/nemid-tjenesteudbyder/NemID-tjenesteudbyderpakken/Pages/dokumentation.aspx"
+                        AuthHint =
+                            " If you have already signed up for a TU agreement, you can use the test-administrator signature to create test users." +
+                            "Or you can download some pre-cooked ones <a href=\"https://www.nets.eu/dk-da/kundeservice/nemid-tjenesteudbyder/NemID-tjenesteudbyderpakken/Pages/OCES-II-certifikat-eksempler.aspx\">here</a>",
+                        MoreDetails ="https://www.nets.eu/dk-da/kundeservice/nemid-tjenesteudbyder/implementering"
                     } },
                 { "dknemid-moces-codefile",
                     new DetailInfo
                     {
-                        AuthHint =  "You'll have to call NETS DanId support to get access to the test user creation system for Erhverv codefile.",
-                        MoreDetails = "https://www.nets.eu/dk-da/kundeservice/nemid-tjenesteudbyder/NemID-tjenesteudbyderpakken/Pages/dokumentation.aspx"
+                        AuthHint =  
+                            "You'll need a browser that supports Java applets to use this particular authentication mechanism." +
+                            " IE 11 Desktop (<em>not</em> Edge) and Firefox on OS X have been known to work." + 
+                            " If you have already signed up for a TU agreement, you can use the test-administrator signature to create test users." + 
+                            "Or you can download some pre-cooked ones <a href=\"https://www.nets.eu/dk-da/kundeservice/nemid-tjenesteudbyder/NemID-tjenesteudbyderpakken/Pages/OCES-II-certifikat-eksempler.aspx\">here</a>",
+                        MoreDetails = "https://www.nets.eu/dk-da/kundeservice/nemid-tjenesteudbyder/implementering"
                     } }
             };
         }
