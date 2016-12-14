@@ -86,7 +86,10 @@ namespace easyIDDemo
                 new AuthMethodRendition { Name = "NO BankID kodebrik", Value = "nobid-central" },
                 new AuthMethodRendition { Name = "NO BankID mobil", Value = "nobid-mobile" },
                 new AuthMethodRendition { Name = "SE BankID denna enhet", Value = "sbid-local" },
-                new AuthMethodRendition { Name = "SE BankID annan enhet", Value = "sbid" }
+                new AuthMethodRendition { Name = "SE BankID annan enhet", Value = "sbid" },
+                new AuthMethodRendition { Name = "DK NemID privat", Value = "dknemid-poces" },
+                new AuthMethodRendition { Name = "DK NemID erhverv", Value = "dknemid-moces" },
+                new AuthMethodRendition { Name = "DK NemID nøglefil (erhverv)", Value = "dknemid-moces-codefile" }
             };
 
             if (this.Request.Url.Host == "www.grean.id")
@@ -94,12 +97,7 @@ namespace easyIDDemo
                 return productionReady;
             }
 
-            var inProgress = new[]
-            {
-                new AuthMethodRendition { Name = "DK NemID privat", Value = "dknemid-poces" },
-                new AuthMethodRendition { Name = "DK NemID erhverv", Value = "dknemid-moces" },
-                new AuthMethodRendition { Name = "DK NemID nøglefil (erhverv)", Value = "dknemid-moces-codefile" }
-            };
+            var inProgress = new AuthMethodRendition[] {};
 
             return productionReady.Concat(inProgress).ToArray();
         }
