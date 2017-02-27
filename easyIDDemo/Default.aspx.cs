@@ -76,7 +76,10 @@ namespace easyIDDemo
                             " If you have already signed up for a TU agreement, you can use the test-administrator signature to create test users." + 
                             "Or you can download some pre-cooked ones <a href=\"https://www.nets.eu/dk-da/kundeservice/nemid-tjenesteudbyder/NemID-tjenesteudbyderpakken/Pages/OCES-II-certifikat-eksempler.aspx\">here</a>",
                         MoreDetails = "https://www.nets.eu/dk-da/kundeservice/nemid-tjenesteudbyder/implementering"
-                    } }
+                    } },
+                { "test-sbid-launch",
+                    new DetailInfo
+                    { AuthHint = "", MoreDetails = "" } }
             };
         }
 
@@ -97,7 +100,9 @@ namespace easyIDDemo
                 return productionReady;
             }
 
-            var inProgress = new AuthMethodRendition[] {};
+            var inProgress = new AuthMethodRendition[] {
+                new AuthMethodRendition { Name = "Test SBID launch", Value = "test-sbid-launch" }
+            };
 
             return productionReady.Concat(inProgress).ToArray();
         }
