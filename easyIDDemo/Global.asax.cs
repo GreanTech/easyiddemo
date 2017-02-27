@@ -90,6 +90,14 @@ namespace easyIDDemo
                     e.SignInRequestMessage.HomeRealm = "th-bankid-test";
                     e.SignInRequestMessage.Reply = "https://dev118.trygghansa.se/_trust/default.aspx";
                 }
+                else if (authMethod == "test-sbid-choice")
+                {
+                    e.SignInRequestMessage.BaseUri = new Uri("https://th-test.grean.io/wsfed", UriKind.Absolute);
+                    e.SignInRequestMessage.Realm = "https://dev118.trygghansa.se";
+                    e.SignInRequestMessage.AuthenticationType = "urn:signicat:SAML:2.0:ac:ref:codan:sbid-choice";
+                    e.SignInRequestMessage.HomeRealm = "th-bankid-test";
+                    e.SignInRequestMessage.Reply = "https://dev118.trygghansa.se/_trust/default.aspx";
+                }
             }
         }
     }

@@ -78,8 +78,9 @@ namespace easyIDDemo
                         MoreDetails = "https://www.nets.eu/dk-da/kundeservice/nemid-tjenesteudbyder/implementering"
                     } },
                 { "test-sbid-launch",
-                    new DetailInfo
-                    { AuthHint = "", MoreDetails = "" } }
+                    new DetailInfo { AuthHint = "", MoreDetails = "" } },
+                { "test-sbid-choice",
+                    new DetailInfo { AuthHint = "", MoreDetails = "" } }
             };
         }
 
@@ -101,7 +102,8 @@ namespace easyIDDemo
             }
 
             var inProgress = new AuthMethodRendition[] {
-                new AuthMethodRendition { Name = "Test SBID launch", Value = "test-sbid-launch" }
+                new AuthMethodRendition { Name = "Test SBID launch", Value = "test-sbid-launch" },
+                new AuthMethodRendition { Name = "Test SBID choice", Value = "test-sbid-choice" },
             };
 
             return productionReady.Concat(inProgress).ToArray();
