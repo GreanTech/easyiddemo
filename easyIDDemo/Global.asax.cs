@@ -67,6 +67,11 @@ namespace easyIDDemo
                     e.SignInRequestMessage.AuthenticationType = "urn:grn:authn:se:bankid:same-device";
                     e.SignInRequestMessage.HomeRealm = "sbid-local";
                 }
+                else if (authMethod == "sbid-local-framed")
+                {
+                    e.SignInRequestMessage.AuthenticationType = "urn:grn:authn:se:bankid:same-device";
+                    e.SignInRequestMessage.HomeRealm = "sbid-local";
+                }
                 else if (authMethod == "dknemid-poces")
                 {
                     e.SignInRequestMessage.AuthenticationType = "urn:grn:authn:dk:nemid:poces";
