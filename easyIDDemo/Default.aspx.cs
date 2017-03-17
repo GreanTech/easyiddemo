@@ -53,12 +53,6 @@ namespace easyIDDemo
                         AuthHint =  "You'll need to install the official BankId desktop app on your machine, and import test user keys",
                         MoreDetails = "https://www.bankid.com/assets/bankid/rp/how-to-get-bankid-for-test-v1.5.pdf"
                     } },
-                { "sbid-local-framed",
-                    new DetailInfo
-                    {
-                        AuthHint =  "You'll need to install the official BankId desktop app on your machine, and import test user keys",
-                        MoreDetails = "https://www.bankid.com/assets/bankid/rp/how-to-get-bankid-for-test-v1.5.pdf"
-                    } },
                 { "dknemid-poces",
                     new DetailInfo
                     {
@@ -96,7 +90,6 @@ namespace easyIDDemo
                 new AuthMethodRendition { Name = "NO BankID kodebrik", Value = "nobid-central" },
                 new AuthMethodRendition { Name = "NO BankID mobil", Value = "nobid-mobile" },
                 new AuthMethodRendition { Name = "SE BankID denna enhet", Value = "sbid-local" },
-                new AuthMethodRendition { Name = "SE BankID denna enhet (iframe)", Value = "sbid-local-framed" },
                 new AuthMethodRendition { Name = "SE BankID annan enhet", Value = "sbid" },
                 new AuthMethodRendition { Name = "DK NemID privat", Value = "dknemid-poces" },
                 new AuthMethodRendition { Name = "DK NemID erhverv", Value = "dknemid-moces" },
