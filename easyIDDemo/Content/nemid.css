@@ -1,0 +1,48 @@
+﻿/* Make all default texts invisible */
+#dknemid-cpr-entry, #dknemid-continue span, #dknemid-rememberme span {
+    font-size: 0;
+    z-index: 100;
+    color: white;
+}
+
+/* Replace DK label for CPR number input field */
+#dknemid-cpr-entry span.lang-da:after {
+    font-size: 16px;
+    color: black;
+    content: 'Angiv CPR nummer';
+}
+
+/* Replace UK label for CPR number input field */
+#dknemid-cpr-entry span.lang-en:after {
+    font-size: 16px;
+    color: black;
+    content: 'Specify CPR number';
+}
+
+/* Replace DK button text */
+#dknemid-continue span.lang-da:after {
+    font-size: 16px;
+    color: black;
+    content: 'Videre';
+}
+
+/* Replace UK button text */
+#dknemid-continue span.lang-en:after {
+    font-size: 16px;
+    color: black;
+    content: 'Next';
+}
+
+/* Replace DK RememberMe label */
+#dknemid-rememberme span.lang-da:after {
+    font-size: 16px;
+    color: black;
+    content: 'Gem til næste besøg?';
+}
+
+/* Replace UK RememberMe label */
+#dknemid-rememberme span.lang-en:after {
+    font-size: 16px;
+    color: black;
+    content: 'Save for later visits?';
+}

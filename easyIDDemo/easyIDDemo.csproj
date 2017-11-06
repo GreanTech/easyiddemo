@@ -118,6 +118,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\SignOut.aspx" />
+    <Content Include="Content\nemid.css" />
     <Content Include="Logout.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
