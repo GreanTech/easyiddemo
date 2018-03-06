@@ -18,9 +18,15 @@ namespace easyIDDemo
                 ub.Path = "/";
                 ub.Query = "";
                 ub.Fragment = "";
+                var issuerSignoutUrl =
+                    new UriBuilder(new Uri(FederatedAuthentication.FederationConfiguration.WsFederationConfiguration.Issuer, UriKind.Absolute));
+                if (Request.Url.Host == "www.grean.id")
+                {
+                    issuerSignoutUrl.Host = "easyid.www.grean.id";
+                }
+
                 WSFederationAuthenticationModule.FederatedSignOut(
-                    new Uri(FederatedAuthentication.FederationConfiguration.WsFederationConfiguration.Issuer, UriKind.Absolute),
-                    ub.Uri);
+                    issuerSignoutUrl.Uri, ub.Uri);
             }
             else
             {
