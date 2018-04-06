@@ -7,7 +7,7 @@
 
     <% if (User.Identity.IsAuthenticated) { %>
     <div class="jumbotron">
-        Hi there, <code><%= Context.User.Identity.Name %></code>! Here's what easyID tells us about you
+        Hi there, <code><%= Context.User.Identity.Name %></code>! Here's what Criipto Verify tells us about you
     </div>
     <div class="row">
         
@@ -22,7 +22,7 @@
     </div>
     <% } else { %>
     <div class="jumbotron">
-        <p class="text-info">Welcome to the Grean easyID .NET demo site!</p>
+        <p class="text-info">Welcome to the Criipto Verify .NET demo site!</p>
         <p>Here, you'll find a working example of how to easily integrate various national login offerings into your web site.</p>
         <p>This sample will work with any .NET web site, from plain-vanilla ASP.NET (MVC and WebForms alike), over Sharepoint, to SiteCore and beyond.</p>        
     </div>
@@ -39,7 +39,7 @@
     <div class="row">
         <div class="col-lg-6">
             <div id="login">
-                <iframe src="" id="easyid" title="easyID" class="login-frame-<%=this.AuthMethod %>"
+                <iframe src="" id="verify" title="Criipto-Verify" class="login-frame-<%=this.AuthMethod %>"
                     allowfullscreen="true" scrolling="no" frameborder="0" class="hidden-frame"></iframe>
             </div>
         </div>
@@ -62,7 +62,7 @@
         var isWindowsPhone8 = function () { return testUA(/Windows Phone 8/i); };
 
         var framed = function (loginUrl) {
-            var frame = document.getElementById('easyid');
+            var frame = document.getElementById('verify');
             frame.src = loginUrl;
             frame.class = 'visible-frame';
         };
@@ -75,7 +75,7 @@
                     // WinPhone 8 UA string contains 'Android', so handle it first
                     if (isWindowsPhone8()) {
                         // The reason to use redirect here is because WP8 mis-interprets
-                        // the X-Frame-Options ALLOW-FROM header that EasyID sends.
+                        // the X-Frame-Options ALLOW-FROM header that Criipto Verify sends.
                         console.log('Same-device SE bankid on WinPhone8 detected. Redirecting.');
                         return redirect;
                     } else {

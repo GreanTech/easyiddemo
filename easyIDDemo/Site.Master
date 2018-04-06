@@ -46,7 +46,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" runat="server" href="~/">easyID Demo</a>
+                    <a class="navbar-brand" runat="server" href="~/">Criipto Verify Demo</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
@@ -64,7 +64,7 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p class="pull-left">You can sign up for a free easyID test account on <a href="https://www.grean.com">grean.com</a></p>
+                <p class="pull-left">You can sign up for a free Criipto Verify test account on <a href="https://www.criipto.com">criipto.com</a></p>
                 <p class="pull-right">Source code is on <a href="https://www.github.com/greantech/easyiddemo">GitHub</a></p>
             </footer>
         </div>
