@@ -1,10 +1,10 @@
-# Welcome to the easyID-meets-ASP.NET-site demo repository
+# Welcome to the Criipto-Verify-meets-ASP.NET-site demo repository
 
 *If you need to Know Your Customer - then look no further! 
-`easyID` will provide you with the information you need about your end users*
+`Criipto Verify` will provide you with the information you need about your end users*
 
 To make this happen on your own website(s), you'll need 2 things:
-- An `easyID` account (you can sign up for a free test account on [grean.com](https://www.grean.com))
+- A `Criipto Verify` account (you can sign up for a free test account on [criipto.com](https://www.criipto.com))
 - A bit of legwork on your website
 
 You can use the guide below, and the contents of this repository, as a step-by-step guide to providing your website with the real-life identity of your end users.
@@ -31,13 +31,13 @@ If not, a detailed guide follows below.
 ## Getting started
 By far, the easiest way to go about this is to create a new, throw-away, web project, and let the `Change Authentication` wizard do the heavy lifting.
 You can then simply copy the relevant parts of the generated `web.config` to your actual web site's config file (see checklist below for elements to copy). 
-To complete the wizard, you need the DNS name that you chose for your `easyID` test tenant domain, and the `realm` value that you chose in `easyID` for your application.
-You will also need to have a live Internet connection, and the ability to download an XML file from `easyID`. 
+To complete the wizard, you need the DNS name that you chose for your `Criipto Verify` test tenant domain, and the `realm` value that you chose in `Criipto Verify` for your application.
+You will also need to have a live Internet connection, and the ability to download an XML file from `Criipto Verify`. 
 For comparison, this demo uses the following values:
-- `YOUR-easyID-TEST-DNS-DOMAIN = https://easyid.www.prove.id`
+- `YOUR-Criipto-Verify-TEST-DNS-DOMAIN = https://easyid.www.prove.id`
 - `YOUR-APP-REALM = urn:grn:app:easyid-demo`
 
-These values are referred to in the list below as `YOUR-easyID-TEST-DNS-DOMAIN` and `YOUR-APP-REALM`:
+These values are referred to in the list below as `YOUR-Criipto-Verify-TEST-DNS-DOMAIN` and `YOUR-APP-REALM`:
 - Go to `File -> New -> Project`. The `New Project` popup opens.
 - Choose `Templates -> Visual C# -> Web` (YMMV if you don't have C# installed).
 - Select `ASP.NET Web Application` and click the `OK` button
@@ -46,7 +46,7 @@ These values are referred to in the list below as `YOUR-easyID-TEST-DNS-DOMAIN` 
 - Click the `Change Authentication` button - the `Change Authentication` popup opens.
 - Select the `Work And School Accounts` radio button option
 - Select `On-Premises` in the dropdown menu on the right-hand side of the dialog
-- Enter `https://YOUR-easyID-TEST-DNS-DOMAIN/metadata/wsfed` in the `On-Premises Authority:` field
+- Enter `https://YOUR-Criipto-Verify-TEST-DNS-DOMAIN/metadata/wsfed` in the `On-Premises Authority:` field
 - Enter `YOUR-APP-REALM` in the `App ID URI:` field
 - Click the `OK` button. If the `Change Authentication` popup closes by itself, you should be good to proceed. 
 Otherwise, check for type-o's in the `On-Premises Authority`  field. That is the most likely cause of problems.
