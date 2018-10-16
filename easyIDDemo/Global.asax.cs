@@ -82,21 +82,15 @@ namespace easyIDDemo
                     e.SignInRequestMessage.AuthenticationType = "urn:grn:authn:dk:nemid:moces:codefile";
                     e.SignInRequestMessage.HomeRealm = "dknemid-moces-codefile";
                 }
-                else if (authMethod == "test-sbid-launch")
+                else if (authMethod == "fi-tupas")
                 {
-                    e.SignInRequestMessage.BaseUri = new Uri("https://th-test.grean.io/wsfed", UriKind.Absolute);
-                    e.SignInRequestMessage.Realm = "https://dev118.trygghansa.se";
-                    e.SignInRequestMessage.AuthenticationType = "urn:signicat:SAML:2.0:ac:ref:codan:sbid-local";
-                    e.SignInRequestMessage.HomeRealm = "th-bankid-test";
-                    e.SignInRequestMessage.Reply = "https://dev118.trygghansa.se/_trust/default.aspx";
+                    e.SignInRequestMessage.AuthenticationType = "urn:grn:authn:fi:tupas";
+                    e.SignInRequestMessage.HomeRealm = "fi-tupas";
                 }
-                else if (authMethod == "test-sbid-choice")
+                else if (authMethod == "fi-mobile-id")
                 {
-                    e.SignInRequestMessage.BaseUri = new Uri("https://th-test.grean.io/wsfed", UriKind.Absolute);
-                    e.SignInRequestMessage.Realm = "https://dev118.trygghansa.se";
-                    e.SignInRequestMessage.AuthenticationType = "urn:signicat:SAML:2.0:ac:ref:codan:sbid-choice";
-                    e.SignInRequestMessage.HomeRealm = "th-bankid-test";
-                    e.SignInRequestMessage.Reply = "https://dev118.trygghansa.se/_trust/default.aspx";
+                    e.SignInRequestMessage.AuthenticationType = "urn:grn:authn:fi:mobile-id";
+                    e.SignInRequestMessage.HomeRealm = "fi-mobile-id";
                 }
             }
         }

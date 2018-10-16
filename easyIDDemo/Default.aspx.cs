@@ -77,10 +77,19 @@ namespace easyIDDemo
                             "Or you can download some pre-cooked ones <a href=\"https://www.nets.eu/dk-da/kundeservice/nemid-tjenesteudbyder/NemID-tjenesteudbyderpakken/Pages/OCES-II-certifikat-eksempler.aspx\">here</a>",
                         MoreDetails = "https://www.nets.eu/dk-da/kundeservice/nemid-tjenesteudbyder/implementering"
                     } },
-                { "test-sbid-launch",
-                    new DetailInfo { AuthHint = "", MoreDetails = "" } },
-                { "test-sbid-choice",
-                    new DetailInfo { AuthHint = "", MoreDetails = "" } }
+                { "fi-tupas",
+                    new DetailInfo
+                    {
+                        AuthHint =  
+                            "You can find test users <a href=\"http://docs.maksuturva.fi/fi/html/pages/4_2_1_verkkopankkien_testitunnukset.html\">here</a>" +
+                            "There is also an English version <a href=\"http://docs.maksuturva.fi/en/html/pages/4_2_1_internet_banks__test_credentials.html?ms=EQAAIBA=&mw=NDAw&st=MA==&sct=MA==\">here</a>",
+                        MoreDetails = "http://docs.maksuturva.fi" } },
+                { "fi-mobile-id",
+                    new DetailInfo
+                    {
+                        AuthHint =
+                            "We're awfully sorry, but you can only test this via a real mobile id, so you have to get such one yourself.",
+                        MoreDetails = "https://mobiilivarmenne.fi/" } },
             };
         }
 
@@ -102,8 +111,8 @@ namespace easyIDDemo
             }
 
             var inProgress = new AuthMethodRendition[] {
-                new AuthMethodRendition { Name = "Test SBID launch", Value = "test-sbid-launch" },
-                new AuthMethodRendition { Name = "Test SBID choice", Value = "test-sbid-choice" },
+                new AuthMethodRendition { Name = "FI TUPAS", Value = "fi-tupas" },
+                new AuthMethodRendition { Name = "FI Mobiilivarmenne", Value = "fi-mobile-id" }                
             };
 
             return productionReady.Concat(inProgress).ToArray();

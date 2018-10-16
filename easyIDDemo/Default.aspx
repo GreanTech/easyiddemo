@@ -93,6 +93,8 @@
                     return redirect;
                 }
                 return framed;
+            } else if (authMethod === 'fi-tupas') {
+                return redirect;
             }
 
             return framed;
