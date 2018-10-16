@@ -93,7 +93,7 @@
                     return redirect;
                 }
                 return framed;
-            } else if (authMethod === 'fi-tupas') {
+            } else if (authMethod === 'fi-tupas' || authMethod === 'fi-mobile-id') {
                 return redirect;
             }
 
