@@ -92,6 +92,11 @@ namespace easyIDDemo
                     e.SignInRequestMessage.AuthenticationType = "urn:grn:authn:fi:mobile-id";
                     e.SignInRequestMessage.HomeRealm = "fi-mobile-id";
                 }
+                else if (authMethod == "fi-all")
+                {
+                    e.SignInRequestMessage.AuthenticationType = "urn:grn:authn:fi:all";
+                    e.SignInRequestMessage.HomeRealm = "fi-all";
+                }
             }
         }
     }

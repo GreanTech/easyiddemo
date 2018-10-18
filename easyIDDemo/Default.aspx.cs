@@ -88,8 +88,9 @@ namespace easyIDDemo
                     new DetailInfo
                     {
                         AuthHint =
-                            "We're awfully sorry, but you can only test this via a real mobile id, so you have to get such one yourself.",
+                            "You can only test this via a real mobile id, so you have to get such one for yourself.",
                         MoreDetails = "https://mobiilivarmenne.fi/" } },
+                { "fi-all", new DetailInfo { AuthHint = "", MoreDetails = "" } }
             };
         }
 
@@ -112,7 +113,8 @@ namespace easyIDDemo
 
             var inProgress = new AuthMethodRendition[] {
                 new AuthMethodRendition { Name = "FI TUPAS", Value = "fi-tupas" },
-                new AuthMethodRendition { Name = "FI Mobiilivarmenne", Value = "fi-mobile-id" }                
+                new AuthMethodRendition { Name = "FI Mobiilivarmenne", Value = "fi-mobile-id" },
+                new AuthMethodRendition { Name = "FI all", Value = "fi-all" }   
             };
 
             return productionReady.Concat(inProgress).ToArray();
