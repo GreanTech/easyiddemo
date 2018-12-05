@@ -32,7 +32,7 @@ namespace easyIDDemo
                 { "nobid-central",
                     new DetailInfo
                     {
-                        AuthHint = "You can test with these credentials: Fødselsnummer '01017012345', Engangskode 'otp' and Personlig passord 'qwer1234'",
+                        AuthHint = "You can find and create test users at https://ra-preprod.bankidnorge.no/#/search/endUser. All kodebrik (aka 'Netcentric') test accounts are automatically created with Engangskode 'otp' and Personlig passord 'qwer1234'",
                         MoreDetails = "https://www.bankid.no/"
                     } },
                 { "nobid-mobile",
