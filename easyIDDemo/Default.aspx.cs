@@ -90,7 +90,8 @@ namespace easyIDDemo
                         AuthHint =
                             "You can only test this via a real mobile id, so you have to get such one for yourself.",
                         MoreDetails = "https://mobiilivarmenne.fi/" } },
-                { "fi-all", new DetailInfo { AuthHint = "", MoreDetails = "" } }
+                { "fi-all", new DetailInfo { AuthHint = "", MoreDetails = "" } },
+                { "no-vipps", new DetailInfo { AuthHint = "You can sign up for Vipps Login with your Norwegian BankID.", MoreDetails = "https://www.vipps.no/produkter-og-tjenester/bedrift/innlogging-og-identifisering/logg-inn-med-vipps/" } }
             };
         }
 
@@ -115,6 +116,7 @@ namespace easyIDDemo
             }
 
             var inProgress = new AuthMethodRendition[] {
+                new AuthMethodRendition { Name = "NO Vipps", Value = "no-vipps" }
             };
 
             return productionReady.Concat(inProgress).ToArray();

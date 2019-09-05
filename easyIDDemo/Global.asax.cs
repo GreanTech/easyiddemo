@@ -97,6 +97,10 @@ namespace easyIDDemo
                     e.SignInRequestMessage.AuthenticationType = "urn:grn:authn:fi:all";
                     e.SignInRequestMessage.HomeRealm = "fi-all";
                 }
+                else if (authMethod == "no-vipps")
+                {
+                    e.SignInRequestMessage.AuthenticationType = "urn:grn:authn:no:vipps";
+                }
             }
         }
     }

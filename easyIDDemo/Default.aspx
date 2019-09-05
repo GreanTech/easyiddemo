@@ -93,7 +93,12 @@
                     return redirect;
                 }
                 return framed;
-            } else if (authMethod === 'fi-tupas' || authMethod === 'fi-mobile-id' || authMethod === 'fi-all') {
+            } else if (
+                authMethod === 'fi-tupas'
+                || authMethod === 'fi-mobile-id'
+                || authMethod === 'fi-all'
+                || authMethod === 'no-vipps'
+            ) {
                 return redirect;
             }
 
