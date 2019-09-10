@@ -100,6 +100,7 @@ namespace easyIDDemo
             var productionReady = new[] {
                 new AuthMethodRendition { Name = "NO BankID kodebrik", Value = "nobid-central" },
                 new AuthMethodRendition { Name = "NO BankID mobil", Value = "nobid-mobile" },
+                new AuthMethodRendition { Name = "NO Vipps", Value = "no-vipps" },
                 new AuthMethodRendition { Name = "SE BankID denna enhet", Value = "sbid-local" },
                 new AuthMethodRendition { Name = "SE BankID annan enhet", Value = "sbid" },
                 new AuthMethodRendition { Name = "DK NemID privat", Value = "dknemid-poces" },
@@ -116,7 +117,6 @@ namespace easyIDDemo
             }
 
             var inProgress = new AuthMethodRendition[] {
-                new AuthMethodRendition { Name = "NO Vipps", Value = "no-vipps" }
             };
 
             return productionReady.Concat(inProgress).ToArray();
