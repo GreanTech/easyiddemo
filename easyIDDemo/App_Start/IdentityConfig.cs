@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.IdentityModel.Services;
+using System.IdentityModel.Tokens;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 
@@ -27,13 +28,17 @@ namespace easyIDDemo
 
             var idConfig = FederatedAuthentication.FederationConfiguration.IdentityConfiguration;
             var defaultIssuerTokenResolver = idConfig.IssuerTokenResolver;
-            var rawData = 
-                Convert.FromBase64String(
-                    OutOfBandX509CertificateSecurityTokenResolver.EasyIdSandboxSigningCertificate);
-            var easyIdSandboxCert = new X509Certificate2(rawData);
-            var oobIssuerTokenResolver = 
-                new OutOfBandX509CertificateSecurityTokenResolver(defaultIssuerTokenResolver, easyIdSandboxCert);
-            idConfig.IssuerTokenResolver = oobIssuerTokenResolver;
+            var oobResolvers =
+                    OutOfBandX509CertificateSecurityTokenResolver.EasyIdSandboxSigningCertificates.Select(
+                        sandboxSigningCertificate =>
+                {
+                    var rawData = Convert.FromBase64String(sandboxSigningCertificate);
+                    var easyIdSandboxCert = new X509Certificate2(rawData);
+                    return
+                        new OutOfBandX509CertificateSecurityTokenResolver(defaultIssuerTokenResolver, easyIdSandboxCert);
+                });
+            idConfig.IssuerTokenResolver = new AggregateTokenResolver(oobResolvers);
+            ;
         }
 
         public static void UpdateAudienceUri()

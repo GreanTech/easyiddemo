@@ -54,6 +54,12 @@ select {
     border: 0px;
 }
 
+.login-frame-nobid-oidc {
+    width: 400px;
+    height: 300px;
+    border: 0px;
+}
+
 .login-frame-sbid {
     width: 600px;
     height: 300px;

@@ -91,7 +91,13 @@ namespace easyIDDemo
                             "You can only test this via a real mobile id, so you have to get such one for yourself.",
                         MoreDetails = "https://mobiilivarmenne.fi/" } },
                 { "fi-all", new DetailInfo { AuthHint = "", MoreDetails = "" } },
-                { "no-vipps", new DetailInfo { AuthHint = "You can sign up for Vipps Login with your Norwegian BankID.", MoreDetails = "https://www.vipps.no/produkter-og-tjenester/bedrift/innlogging-og-identifisering/logg-inn-med-vipps/" } }
+                { "no-vipps", new DetailInfo { AuthHint = "You can sign up for Vipps Login with your Norwegian BankID.", MoreDetails = "https://www.vipps.no/produkter-og-tjenester/bedrift/innlogging-og-identifisering/logg-inn-med-vipps/" } },
+                { "nobid-oidc",
+                    new DetailInfo
+                    {
+                        AuthHint = "You can find and create test users at https://ra-preprod.bankidnorge.no/#/search/endUser. All kodebrik (aka 'Netcentric') test accounts are automatically created with Engangskode 'otp' and Personlig passord 'qwer1234'. If you need to test mobile logins, you will need to get in touch with BankId Norge to get a SIM card for the test system.",
+                        MoreDetails = "https://www.bankid.no/"
+                    } },
             };
         }
 
@@ -117,6 +123,7 @@ namespace easyIDDemo
             }
 
             var inProgress = new AuthMethodRendition[] {
+                new AuthMethodRendition { Name = "NO BankID", Value = "nobid-oidc" },
             };
 
             return productionReady.Concat(inProgress).ToArray();

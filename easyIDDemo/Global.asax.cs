@@ -101,6 +101,10 @@ namespace easyIDDemo
                 {
                     e.SignInRequestMessage.AuthenticationType = "urn:grn:authn:no:vipps";
                 }
+                else if (authMethod == "nobid-oidc")
+                {
+                    e.SignInRequestMessage.AuthenticationType = "urn:grn:authn:no:bankid";
+                }
             }
         }
     }
