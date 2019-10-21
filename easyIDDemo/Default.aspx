@@ -98,6 +98,7 @@
                 || authMethod === 'fi-mobile-id'
                 || authMethod === 'fi-all'
                 || authMethod === 'no-vipps'
+                || authMethod === 'nobid-oidc'
             ) {
                 return redirect;
             }
