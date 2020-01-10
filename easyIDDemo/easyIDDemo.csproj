@@ -173,6 +173,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Site.Master" />
+    <Content Include="SSO.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -206,6 +207,13 @@
     </Compile>
     <Compile Include="Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SSO.aspx.cs">
+      <DependentUpon>SSO.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SSO.aspx.designer.cs">
+      <DependentUpon>SSO.aspx</DependentUpon>
     </Compile>
     <Compile Include="WIFAntiXssModule.cs" />
     <Compile Include="Default.aspx.cs">
