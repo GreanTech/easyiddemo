@@ -90,3 +90,8 @@ select {
 .visible-frame {
     display: block
 }
+
+.rbl-horizontal label {
+    margin-left: 2px;
+    margin-right: 10px;
+}

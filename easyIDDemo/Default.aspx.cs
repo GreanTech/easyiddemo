@@ -19,14 +19,39 @@ namespace easyIDDemo
         public string Value { get; set; }
     }
 
+    public class LanguageRendition
+    {
+        public string DisplayName { get; set; }
+        public string TwoLetterIsoCode { get; set; }
+    }
+
     public partial class _Default : Page
     {
-        private class DetailInfo { public string AuthHint; public string MoreDetails; }
-        private string authMethod = "nobid-central";
+        private class DetailInfo {
+            public string AuthHint;
+            public string MoreDetails;
+        }
+
+        private readonly LanguageRendition [] languages = 
+            new [] 
+            {
+                new LanguageRendition { DisplayName = "Norsk", TwoLetterIsoCode = "nb" },
+                new LanguageRendition { DisplayName = "Svensk", TwoLetterIsoCode = "sv" },
+                new LanguageRendition { DisplayName = "Dansk", TwoLetterIsoCode = "da" },
+                new LanguageRendition { DisplayName = "Suomi", TwoLetterIsoCode = "fi" },
+                new LanguageRendition { DisplayName = "Svensk", TwoLetterIsoCode = "se" },
+                new LanguageRendition { DisplayName = "English", TwoLetterIsoCode = "en" }
+            };
+
+        private string authMethod;
+        private string language;
+
         private Dictionary<string, DetailInfo> hints;
 
         public _Default()
         {
+            this.authMethod = "nobid-central";
+            this.language = languages.First().TwoLetterIsoCode;
             this.hints = new Dictionary<string, DetailInfo>
             {
                 { "nobid-central",
@@ -83,15 +108,26 @@ namespace easyIDDemo
                         AuthHint =  
                             "You can find test users <a href=\"http://docs.maksuturva.fi/fi/html/pages/4_2_1_verkkopankkien_testitunnukset.html\">here</a>" +
                             "There is also an English version <a href=\"http://docs.maksuturva.fi/en/html/pages/4_2_1_internet_banks__test_credentials.html?ms=EQAAIBA=&mw=NDAw&st=MA==&sct=MA==\">here</a>",
-                        MoreDetails = "http://docs.maksuturva.fi" } },
+                        MoreDetails = "http://docs.maksuturva.fi"
+                    }
+                },
                 { "fi-mobile-id",
                     new DetailInfo
                     {
                         AuthHint =
                             "You can only test this via a real mobile id, so you have to get such one for yourself.",
-                        MoreDetails = "https://mobiilivarmenne.fi/" } },
-                { "fi-all", new DetailInfo { AuthHint = "", MoreDetails = "" } },
-                { "no-vipps", new DetailInfo { AuthHint = "You can sign up for Vipps Login with your Norwegian BankID.", MoreDetails = "https://www.vipps.no/produkter-og-tjenester/bedrift/innlogging-og-identifisering/logg-inn-med-vipps/" } },
+                        MoreDetails = "https://mobiilivarmenne.fi/"
+                    }
+                },
+                { "fi-all",
+                    new DetailInfo { AuthHint = "", MoreDetails = "" }
+                },
+                { "no-vipps",
+                    new DetailInfo {
+                        AuthHint = "You can sign up for Vipps Login with your Norwegian BankID.",
+                        MoreDetails = "https://www.vipps.no/produkter-og-tjenester/bedrift/innlogging-og-identifisering/logg-inn-med-vipps/"
+                    }
+                },
                 { "nobid-oidc",
                     new DetailInfo
                     {
@@ -129,11 +165,24 @@ namespace easyIDDemo
             return productionReady.Concat(inProgress).ToArray();
         }
 
+        public LanguageRendition [] GetLanguages()
+        {
+            return this.languages;
+        }
+
         public string AuthMethod 
         { 
             get 
             {
                 return this.authMethod;
+            }
+        }
+
+        public string Language
+        {
+            get
+            {
+                return this.language;
             }
         }
 
@@ -178,7 +227,10 @@ namespace easyIDDemo
             if (this.IsPostBack)
             {
                 this.authMethod = this.DropDownList.SelectedValue;
-                //this.authMethod = this.RadioButtonList1.SelectedValue;
+                this.language = this.RadioButtonListLanguage.SelectedValue;
+            } else
+            {
+                this.RadioButtonListLanguage.SelectedValue = this.language;
             }
         }
     }

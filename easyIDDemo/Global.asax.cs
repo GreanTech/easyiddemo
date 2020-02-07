@@ -42,6 +42,8 @@ namespace easyIDDemo
                     {
                         authMethod = qs["authMethod"];
                     }
+                    if (qs["uiLocale"] != null)
+                        e.SignInRequestMessage.SetParameter("ui_locales", qs["uiLocale"]);
                 }
                 e.SignInRequestMessage.Reply = 
                     new Uri(
