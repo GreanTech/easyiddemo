@@ -36,11 +36,12 @@ namespace easyIDDemo
             new [] 
             {
                 new LanguageRendition { DisplayName = "Norsk", TwoLetterIsoCode = "nb" },
-                new LanguageRendition { DisplayName = "Svensk", TwoLetterIsoCode = "sv" },
+                new LanguageRendition { DisplayName = "Svensk (sv)", TwoLetterIsoCode = "sv" },
+                new LanguageRendition { DisplayName = "Svensk (se)", TwoLetterIsoCode = "se" },
                 new LanguageRendition { DisplayName = "Dansk", TwoLetterIsoCode = "da" },
                 new LanguageRendition { DisplayName = "Suomi", TwoLetterIsoCode = "fi" },
-                new LanguageRendition { DisplayName = "Svensk", TwoLetterIsoCode = "se" },
-                new LanguageRendition { DisplayName = "English", TwoLetterIsoCode = "en" }
+                new LanguageRendition { DisplayName = "English", TwoLetterIsoCode = "en" },
+                new LanguageRendition { DisplayName = "Browser", TwoLetterIsoCode = "" }
             };
 
         private string authMethod;

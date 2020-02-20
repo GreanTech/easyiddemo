@@ -25,9 +25,9 @@
         <p class="text-info">Welcome to the Criipto Verify .NET Framework demo site!</p>
     </div>
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-8">
             <span>Language selection:</span>
-            <asp:RadioButtonList runat="server" AutoPostBack="false" ID="RadioButtonListLanguage"
+            <asp:RadioButtonList runat="server" AutoPostBack="true" ID="RadioButtonListLanguage"
                 CssClass="rbl-horizontal" RepeatDirection="Horizontal" RepeatLayout="Flow"
                 SelectMethod="GetLanguages" DataTextField="DisplayName" DataValueField="TwoLetterIsoCode" >
             </asp:RadioButtonList>

@@ -42,7 +42,7 @@ namespace easyIDDemo
                     {
                         authMethod = qs["authMethod"];
                     }
-                    if (qs["uiLocale"] != null)
+                    if (!String.IsNullOrWhiteSpace(qs["uiLocale"]))
                         e.SignInRequestMessage.SetParameter("ui_locales", qs["uiLocale"]);
                 }
                 e.SignInRequestMessage.Reply = 
