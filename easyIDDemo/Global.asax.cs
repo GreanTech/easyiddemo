@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Specialized;
 using System.IdentityModel.Services;
 using System.Web;
 using System.Web.Optimization;
@@ -26,25 +27,42 @@ namespace easyIDDemo
         void WSFederationAuthenticationModule_RedirectingToIdentityProvider(object sender, RedirectingToIdentityProviderEventArgs e)
         {
             var host = HttpContext.Current.Request.Url.Host;
+            var qs = new NameValueCollection();
+            if (HttpContext.Current.Request.Url.Query != null)
+            {
+                qs = HttpUtility.ParseQueryString(HttpContext.Current.Request.Url.Query);
+            }
+            var enableSsoSession = 
+                String.Compare("true", qs["establishSsoSession"], StringComparison.OrdinalIgnoreCase) == 0;
+            var newHost = host;
             if (host == "www.grean.id")
             {
-                SetIdPHost("easyid.www.grean.id", e.SignInRequestMessage);
+                if (enableSsoSession)
+                    newHost = "easyid.www.grean.id";
+                else
+                    newHost = "criipto-verify-no-sso.criipto.id";
+            }
+            else if (!enableSsoSession)
+            {
+                newHost = "criipto-verify-no-sso.criipto.io";
+            }
+
+            if (host != newHost)
+            {
+                SetIdPHost(newHost, e.SignInRequestMessage);
             }
 
             if (!String.IsNullOrEmpty(IdentityConfig.Realm))
             {
                 e.SignInRequestMessage.Realm = IdentityConfig.Realm;
                 var authMethod = "";
-                if (HttpContext.Current.Request.Url.Query != null)
+                if (qs["authMethod"] != null)
                 {
-                    var qs = HttpUtility.ParseQueryString(HttpContext.Current.Request.Url.Query);
-                    if (qs["authMethod"] != null)
-                    {
-                        authMethod = qs["authMethod"];
-                    }
-                    if (!String.IsNullOrWhiteSpace(qs["uiLocale"]))
-                        e.SignInRequestMessage.SetParameter("ui_locales", qs["uiLocale"]);
+                    authMethod = qs["authMethod"];
                 }
+                if (!String.IsNullOrWhiteSpace(qs["uiLocale"]))
+                    e.SignInRequestMessage.SetParameter("ui_locales", qs["uiLocale"]);
+
                 e.SignInRequestMessage.Reply = 
                     new Uri(
                         HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority),

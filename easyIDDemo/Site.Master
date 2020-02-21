@@ -51,7 +51,7 @@
                 <div class="navbar-collapse collapse">
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <LoggedInTemplate>
-                            <ul class="nav nav-pills nav-stacked pull-right">
+                            <ul class="nav nav-pills pull-right">
                                 <li class="navbar-text"><a href="SSO">SSO</a></li>
                                 <li class="navbar-text"><a href="Logout">Logout</a></li>
                             </ul>

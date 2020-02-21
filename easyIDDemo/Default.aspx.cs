@@ -46,6 +46,7 @@ namespace easyIDDemo
 
         private string authMethod;
         private string language;
+        private bool establishSsoSession;
 
         private Dictionary<string, DetailInfo> hints;
 
@@ -53,6 +54,7 @@ namespace easyIDDemo
         {
             this.authMethod = "nobid-central";
             this.language = languages.First().TwoLetterIsoCode;
+            this.establishSsoSession = true;
             this.hints = new Dictionary<string, DetailInfo>
             {
                 { "nobid-central",
@@ -187,6 +189,14 @@ namespace easyIDDemo
             }
         }
 
+        public string EstablishSsoSession
+        {
+            get
+            {
+                return this.establishSsoSession.ToString().ToLowerInvariant();
+            }
+        }
+
         public string AuthHint
         {
             get
@@ -228,10 +238,12 @@ namespace easyIDDemo
             if (this.IsPostBack)
             {
                 this.authMethod = this.DropDownList.SelectedValue;
-                this.language = this.RadioButtonListLanguage.SelectedValue;
+                this.language = this.DropDownListLanguage.SelectedValue;
+                this.establishSsoSession = this.CheckBoxSingleSignOnSession.Checked;
             } else
             {
-                this.RadioButtonListLanguage.SelectedValue = this.language;
+                this.DropDownListLanguage.SelectedValue = this.language;
+                this.CheckBoxSingleSignOnSession.Enabled = this.establishSsoSession;
             }
         }
     }

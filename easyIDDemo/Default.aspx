@@ -4,11 +4,9 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <!-- Workaround to please IntelliSense (see http://stackoverflow.com/questions/31886413/the-name-o-does-not-exist-in-the-current-context/31886588#31886588): --> 
     <%="" %>
-
+    <br />
     <% if (User.Identity.IsAuthenticated) { %>
-    <div class="jumbotron">
-        Hi there, <code><%= Context.User.Identity.Name %></code>! Here's what Criipto Verify tells us about you
-    </div>
+    <h3>Greetings <code><%= Context.User.Identity.Name %></code></h3>
     <div class="row">
         
         <table class="table table-striped">
@@ -21,20 +19,8 @@
         </table>
     </div>
     <% } else { %>
-    <div class="jumbotron">
-        <p class="text-info">Welcome to the Criipto Verify .NET Framework demo site!</p>
-    </div>
     <div class="row">
-        <div class="col-lg-8">
-            <span>Language selection:</span>
-            <asp:RadioButtonList runat="server" AutoPostBack="true" ID="RadioButtonListLanguage"
-                CssClass="rbl-horizontal" RepeatDirection="Horizontal" RepeatLayout="Flow"
-                SelectMethod="GetLanguages" DataTextField="DisplayName" DataValueField="TwoLetterIsoCode" >
-            </asp:RadioButtonList>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-3 col-xs-10">
             <div class="input-group">
                 <asp:DropDownList runat="server" AutoPostBack="true" ID="DropDownList" CssClass="form-control" 
                     SelectMethod="GetAuthMethods"  DataTextField="Name" DataValueField="Value" >
@@ -42,6 +28,21 @@
             </div>
         </div>
     </div>
+    <br />
+    <div class="row">
+        <div class="col-lg-2 col-xs-6">
+            <asp:DropDownList runat="server" AutoPostBack="true" ID="DropDownListLanguage"
+                CssClass="form-control" 
+                SelectMethod="GetLanguages" DataTextField="DisplayName" DataValueField="TwoLetterIsoCode" >
+            </asp:DropDownList>
+        </div>
+        <div class="col-lg-2 col-xs-6 form-control-static">
+            <asp:CheckBox runat="server" AutoPostBack="true" ID="CheckBoxSingleSignOnSession"
+                Text="Establish SSO"
+                Checked="true" />
+        </div>
+    </div>
+    <br />
     <script type="text/javascript" src="Scripts/userLoggedInListener.js"></script>
     <div class="row">
         <div class="col-lg-6">
@@ -115,7 +116,8 @@
 
         var authMethod = '<%=this.AuthMethod %>';
         var language = '<%=this.Language %>';
-        var loginUrl = 'Login.aspx?authMethod=' + authMethod + '&uiLocale=' + language;
+        var establishSsoSession = '<%=this.EstablishSsoSession %>'
+        var loginUrl = 'Login.aspx?authMethod=' + authMethod + '&uiLocale=' + language + '&establishSsoSession=' + establishSsoSession;
         var strategy = selectStrategy(authMethod);
         strategy(loginUrl);
     </script>
