@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Specialized;
 using System.IdentityModel.Services;
+using System.Security.Claims;
 using System.Web;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -26,25 +27,35 @@ namespace easyIDDemo
 
         void WSFederationAuthenticationModule_RedirectingToIdentityProvider(object sender, RedirectingToIdentityProviderEventArgs e)
         {
-            var host = HttpContext.Current.Request.Url.Host;
+            var request = HttpContext.Current.Request;
+            var host = request.Url.Host;
             var qs = new NameValueCollection();
-            if (HttpContext.Current.Request.Url.Query != null)
+            if (request.Url.Query != null)
             {
-                qs = HttpUtility.ParseQueryString(HttpContext.Current.Request.Url.Query);
+                qs = HttpUtility.ParseQueryString(request.Url.Query);
             }
-            var enableSsoSession = 
-                String.Compare("true", qs["establishSsoSession"], StringComparison.OrdinalIgnoreCase) == 0;
             var newHost = host;
-            if (host == "www.grean.id")
+            var principal = HttpContext.Current.User as ClaimsPrincipal;
+            var establishSsoSession = new EstablishSsoSessionState().IsEnabled(request);
+            if (HttpContext.Current.User.Identity.IsAuthenticated)
             {
-                if (enableSsoSession)
-                    newHost = "easyid.www.grean.id";
-                else
-                    newHost = "criipto-verify-no-sso.criipto.id";
+                var issuerDns = CurrentTokenIssuerDns.Find((ClaimsIdentity)principal.Identity);
+                if (issuerDns != null)
+                    newHost = issuerDns;
             }
-            else if (!enableSsoSession)
+            else
             {
-                newHost = "criipto-verify-no-sso.criipto.io";
+                if (host == "www.grean.id")
+                {
+                    if (establishSsoSession)
+                        newHost = "easyid.www.grean.id";
+                    else
+                        newHost = "criipto-verify-no-sso.criipto.id";
+                }
+                else if (!establishSsoSession)
+                {
+                    newHost = "criipto-verify-no-sso.criipto.io";
+                }
             }
 
             if (host != newHost)
@@ -56,16 +67,28 @@ namespace easyIDDemo
             {
                 e.SignInRequestMessage.Realm = IdentityConfig.Realm;
                 var authMethod = "";
+                // Explicitly specified authMethod in query overrides cookie-based state
                 if (qs["authMethod"] != null)
                 {
                     authMethod = qs["authMethod"];
                 }
-                if (!String.IsNullOrWhiteSpace(qs["uiLocale"]))
-                    e.SignInRequestMessage.SetParameter("ui_locales", qs["uiLocale"]);
+                else if (!establishSsoSession)
+                {
+                    // When no SSO session is present, Criipto Verify requires an auth method to be specified.
+                    var authMethodState = new AuthMethodState().GetState(request);
+                    if (!String.IsNullOrEmpty(authMethodState))
+                    {
+                        authMethod = authMethodState;
+                    }
+                }
+
+                var language = new LanguageState().GetState(request);
+                if (!String.IsNullOrEmpty(language) && language != LanguageState.BrowserLanguage)
+                    e.SignInRequestMessage.SetParameter("ui_locales", language);
 
                 e.SignInRequestMessage.Reply = 
                     new Uri(
-                        HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority),
+                        request.Url.GetLeftPart(UriPartial.Authority),
                         UriKind.Absolute).AbsoluteUri;
                 if (authMethod == "nobid-mobile")
                 {

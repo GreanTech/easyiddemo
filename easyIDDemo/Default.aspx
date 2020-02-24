@@ -115,9 +115,7 @@
         };
 
         var authMethod = '<%=this.AuthMethod %>';
-        var language = '<%=this.Language %>';
-        var establishSsoSession = '<%=this.EstablishSsoSession %>'
-        var loginUrl = 'Login.aspx?authMethod=' + authMethod + '&uiLocale=' + language + '&establishSsoSession=' + establishSsoSession;
+        var loginUrl = 'Login.aspx?authMethod=' + authMethod;
         var strategy = selectStrategy(authMethod);
         strategy(loginUrl);
     </script>

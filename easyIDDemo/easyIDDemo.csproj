@@ -201,6 +201,8 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\OutOfBandX509CertificateSecurityTokenResolver.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="CurrentTokenIssuerDns.cs" />
+    <Compile Include="HttpCookieState.cs" />
     <Compile Include="Logout.aspx.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

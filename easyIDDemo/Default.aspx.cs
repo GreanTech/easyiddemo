@@ -36,25 +36,20 @@ namespace easyIDDemo
             new [] 
             {
                 new LanguageRendition { DisplayName = "Norsk", TwoLetterIsoCode = "nb" },
-                new LanguageRendition { DisplayName = "Svensk (sv)", TwoLetterIsoCode = "sv" },
-                new LanguageRendition { DisplayName = "Svensk (se)", TwoLetterIsoCode = "se" },
+                new LanguageRendition { DisplayName = "Svenska (sv)", TwoLetterIsoCode = "sv" },
+                new LanguageRendition { DisplayName = "Svenska (se)", TwoLetterIsoCode = "se" },
                 new LanguageRendition { DisplayName = "Dansk", TwoLetterIsoCode = "da" },
                 new LanguageRendition { DisplayName = "Suomi", TwoLetterIsoCode = "fi" },
                 new LanguageRendition { DisplayName = "English", TwoLetterIsoCode = "en" },
-                new LanguageRendition { DisplayName = "Browser", TwoLetterIsoCode = "" }
+                new LanguageRendition { DisplayName = "Browser", TwoLetterIsoCode = LanguageState.BrowserLanguage }
             };
 
         private string authMethod;
-        private string language;
-        private bool establishSsoSession;
-
         private Dictionary<string, DetailInfo> hints;
 
         public _Default()
         {
             this.authMethod = "nobid-central";
-            this.language = languages.First().TwoLetterIsoCode;
-            this.establishSsoSession = true;
             this.hints = new Dictionary<string, DetailInfo>
             {
                 { "nobid-central",
@@ -140,6 +135,27 @@ namespace easyIDDemo
             };
         }
 
+        protected override void OnInit(EventArgs e)
+        {
+            var authMethodState = new AuthMethodState();
+            if (String.IsNullOrEmpty(authMethodState.GetState(this.Request)))
+            {
+                authMethodState.SetState(this.Response, this.authMethod);
+            }
+
+            var langState = new LanguageState();
+            if (String.IsNullOrEmpty(langState.GetState(this.Request)))
+            {
+                langState.SetState(this.Response, LanguageState.BrowserLanguage);
+            }
+            var ssoState = new EstablishSsoSessionState();
+            if (String.IsNullOrEmpty(ssoState.GetState(this.Request)))
+            {
+                ssoState.SetEnabled(this.Response, true);
+            }
+            base.OnInit(e);
+        }
+
         public AuthMethodRendition[] GetAuthMethods()
         {
             var productionReady = new[] {
@@ -173,27 +189,11 @@ namespace easyIDDemo
             return this.languages;
         }
 
-        public string AuthMethod 
-        { 
-            get 
+        public string AuthMethod
+        {
+            get
             {
                 return this.authMethod;
-            }
-        }
-
-        public string Language
-        {
-            get
-            {
-                return this.language;
-            }
-        }
-
-        public string EstablishSsoSession
-        {
-            get
-            {
-                return this.establishSsoSession.ToString().ToLowerInvariant();
             }
         }
 
@@ -233,17 +233,15 @@ namespace easyIDDemo
                 TechIdentifier = claim.Type
             };
         }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (this.IsPostBack)
             {
                 this.authMethod = this.DropDownList.SelectedValue;
-                this.language = this.DropDownListLanguage.SelectedValue;
-                this.establishSsoSession = this.CheckBoxSingleSignOnSession.Checked;
-            } else
-            {
-                this.DropDownListLanguage.SelectedValue = this.language;
-                this.CheckBoxSingleSignOnSession.Enabled = this.establishSsoSession;
+                new AuthMethodState().SetState(this.Response, this.authMethod);
+                new LanguageState().SetState(this.Response, this.DropDownListLanguage.SelectedValue);
+                new EstablishSsoSessionState().SetEnabled(this.Response, this.CheckBoxSingleSignOnSession.Checked);
             }
         }
     }

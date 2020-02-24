@@ -29,18 +29,9 @@ namespace easyIDDemo
                 var identity = this.User.Identity as ClaimsIdentity;
                 if (identity != null)
                 {
-                    var bootstrapContext = identity.BootstrapContext as BootstrapContext;
-                    if (bootstrapContext != null)
-                    {
-                        var bootstrapToken = bootstrapContext.SecurityToken as Saml2SecurityToken;
-                        if (bootstrapToken != null && bootstrapToken.IssuerToken != null)
-                        {
-                            var issuerDns =
-                                FederatedAuthentication.FederationConfiguration.IdentityConfiguration.IssuerNameRegistry
-                                    .GetIssuerName(bootstrapToken.IssuerToken);
-                            issuerSignoutUrl.Host = issuerDns;
-                        }
-                    }
+                    var issuerDns = CurrentTokenIssuerDns.Find(identity);
+                    if (issuerDns != null)
+                        issuerSignoutUrl.Host = issuerDns;
                 }
 
                 WSFederationAuthenticationModule.FederatedSignOut(

@@ -9,7 +9,12 @@ namespace easyIDDemo
         {
             if (User != null && User.Identity != null && User.Identity.IsAuthenticated)
             {
-                FederatedAuthentication.WSFederationAuthenticationModule.SignOut(true);                
+                FederatedAuthentication.WSFederationAuthenticationModule.SignOut(true);
+                var ssoState = new EstablishSsoSessionState();
+                if (!ssoState.IsEnabled(this.Request))
+                {
+                    Response.Redirect("/");
+                }
             }
             else
             {
