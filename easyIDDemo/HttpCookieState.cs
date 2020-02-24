@@ -63,7 +63,8 @@ namespace easyIDDemo
         public bool IsEnabled(HttpRequest request)
         {
             var state = base.GetState(request);
-            if (String.IsNullOrWhiteSpace(state) || !Boolean.TryParse(state, out var enabled))
+            var enabled = false;
+            if (String.IsNullOrWhiteSpace(state) || !Boolean.TryParse(state, out enabled))
             {
                 return this.defaultValue;
             }
