@@ -102,6 +102,16 @@
                 }
                 return framed;
             } else if (
+                authMethod == 'dknemid-poces'
+                || authMethod == 'dknemid-moces'
+                || authMethod == 'dknemid-moces-codefile'
+            ) {
+                if (isiOSChrome()) {
+                    console.log('DK NemID on iOS Chrome detected. Redirecting');
+                    return redirect;
+                }
+                return framed;
+            } else if (
                 authMethod === 'fi-tupas'
                 || authMethod === 'fi-mobile-id'
                 || authMethod === 'fi-all'
