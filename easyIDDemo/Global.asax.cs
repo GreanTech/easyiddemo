@@ -148,6 +148,14 @@ namespace easyIDDemo
                 {
                     e.SignInRequestMessage.AuthenticationType = "urn:grn:authn:no:bankid";
                 }
+                else if (authMethod == "dkmitid-low")
+                {
+                    e.SignInRequestMessage.AuthenticationType = "urn:grn:authn:dk:mitid:low";
+                }
+                else if (authMethod == "dkmitid-substantial")
+                {
+                    e.SignInRequestMessage.AuthenticationType = "urn:grn:authn:dk:mitid:substantial";
+                }
             }
         }
     }

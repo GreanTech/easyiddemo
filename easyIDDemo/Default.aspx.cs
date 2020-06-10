@@ -131,7 +131,14 @@ namespace easyIDDemo
                     {
                         AuthHint = "You can find and create test users at https://ra-preprod.bankidnorge.no/#/search/endUser. All kodebrik (aka 'Netcentric') test accounts are automatically created with Engangskode 'otp' and Personlig passord 'qwer1234'. If you need to test mobile logins, you will need to get in touch with BankId Norge to get a SIM card for the test system.",
                         MoreDetails = "https://www.bankid.no/"
-                    } },
+                    }
+                },
+                { "dkmitid-low",
+                    new DetailInfo { AuthHint = "Username-password", MoreDetails = "" }
+                },
+                { "dkmitid-substantial",
+                    new DetailInfo { AuthHint = "Chip or code-reader", MoreDetails = "" }
+                },
             };
         }
 
@@ -179,6 +186,8 @@ namespace easyIDDemo
             }
 
             var inProgress = new AuthMethodRendition[] {
+                new AuthMethodRendition { Name = "DK MitID low", Value = "dkmitid-low" },
+                new AuthMethodRendition { Name = "DK MitID subst", Value = "dkmitid-substantial" }
             };
 
             return productionReady.Concat(inProgress).ToArray();

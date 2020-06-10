@@ -117,6 +117,8 @@
                 || authMethod === 'fi-all'
                 || authMethod === 'no-vipps'
                 || authMethod === 'nobid-oidc'
+                || authMethod === 'dkmitid-low'
+                || authMethod === 'dkmitid-substantial'
             ) {
                 return redirect;
             }
