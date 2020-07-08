@@ -35,12 +35,12 @@ namespace easyIDDemo
         private readonly LanguageRendition [] languages = 
             new [] 
             {
-                new LanguageRendition { DisplayName = "Norsk", TwoLetterIsoCode = "nb" },
+                new LanguageRendition { DisplayName = "English", TwoLetterIsoCode = "en" },
                 new LanguageRendition { DisplayName = "Svenska (sv)", TwoLetterIsoCode = "sv" },
                 new LanguageRendition { DisplayName = "Svenska (se)", TwoLetterIsoCode = "se" },
+                new LanguageRendition { DisplayName = "Norsk", TwoLetterIsoCode = "nb" },
                 new LanguageRendition { DisplayName = "Dansk", TwoLetterIsoCode = "da" },
                 new LanguageRendition { DisplayName = "Suomi", TwoLetterIsoCode = "fi" },
-                new LanguageRendition { DisplayName = "English", TwoLetterIsoCode = "en" },
                 new LanguageRendition { DisplayName = "Browser", TwoLetterIsoCode = LanguageState.BrowserLanguage }
             };
 
@@ -49,21 +49,9 @@ namespace easyIDDemo
 
         public _Default()
         {
-            this.authMethod = "nobid-central";
+            this.authMethod = "sbid";
             this.hints = new Dictionary<string, DetailInfo>
             {
-                { "nobid-central",
-                    new DetailInfo
-                    {
-                        AuthHint = "You can find and create test users at https://ra-preprod.bankidnorge.no/#/search/endUser. All kodebrik (aka 'Netcentric') test accounts are automatically created with Engangskode 'otp' and Personlig passord 'qwer1234'",
-                        MoreDetails = "https://www.bankid.no/"
-                    } },
-                { "nobid-mobile",
-                    new DetailInfo
-                    {
-                        AuthHint =  "You will need to get in touch with BankId Norge to get a SIM card for the test system.",
-                        MoreDetails = "https://www.bankid.no/"
-                    } },
                 { "sbid",
                     new DetailInfo
                     {
@@ -166,12 +154,10 @@ namespace easyIDDemo
         public AuthMethodRendition[] GetAuthMethods()
         {
             var productionReady = new[] {
-                new AuthMethodRendition { Name = "NO BankID kodebrik", Value = "nobid-central" },
-                new AuthMethodRendition { Name = "NO BankID mobil", Value = "nobid-mobile" },
+                new AuthMethodRendition { Name = "SE BankID annan enhet", Value = "sbid" },
+                new AuthMethodRendition { Name = "SE BankID denna enhet", Value = "sbid-local" },
                 new AuthMethodRendition { Name = "NO BankID", Value = "nobid-oidc" },
                 new AuthMethodRendition { Name = "NO Vipps", Value = "no-vipps" },
-                new AuthMethodRendition { Name = "SE BankID denna enhet", Value = "sbid-local" },
-                new AuthMethodRendition { Name = "SE BankID annan enhet", Value = "sbid" },
                 new AuthMethodRendition { Name = "DK NemID privat", Value = "dknemid-poces" },
                 new AuthMethodRendition { Name = "DK NemID erhverv", Value = "dknemid-moces" },
                 new AuthMethodRendition { Name = "DK NemID nøglefil (erhverv)", Value = "dknemid-moces-codefile" },

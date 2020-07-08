@@ -90,17 +90,7 @@ namespace easyIDDemo
                     new Uri(
                         request.Url.GetLeftPart(UriPartial.Authority),
                         UriKind.Absolute).AbsoluteUri;
-                if (authMethod == "nobid-mobile")
-                {
-                    e.SignInRequestMessage.AuthenticationType = "urn:grn:authn:no:bankid:mobile";
-                    e.SignInRequestMessage.HomeRealm = "nobid-mobile";
-                }
-                else if (authMethod == "nobid-central")
-                {
-                    e.SignInRequestMessage.AuthenticationType = "urn:grn:authn:no:bankid:central";
-                    //e.SignInRequestMessage.HomeRealm = "nobid-central";
-                }
-                else if (authMethod == "sbid")
+                if (authMethod == "sbid")
                 {
                     e.SignInRequestMessage.AuthenticationType = "urn:grn:authn:se:bankid:another-device";
                     e.SignInRequestMessage.HomeRealm = "sbid";
