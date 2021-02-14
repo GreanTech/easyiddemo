@@ -103,7 +103,7 @@ namespace easyIDDemo
                 else if (authMethod == "dknemid-poces")
                 {
                     e.SignInRequestMessage.AuthenticationType = "urn:grn:authn:dk:nemid:poces";
-                    e.SignInRequestMessage.HomeRealm = "dknemid-poces";
+                    e.SignInRequestMessage.HomeRealm = "dk-nemid";
                 }
                 else if (authMethod == "dknemid-moces")
                 {
