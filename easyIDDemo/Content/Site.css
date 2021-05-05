@@ -54,6 +54,12 @@ select {
     border: 0px;
 }
 
+.login-frame-sbid-qr {
+    width: 600px;
+    height: 800px;
+    border: 0px;
+}
+
 .login-frame-sbid-local {
     width: 600px;
     height: 300px;

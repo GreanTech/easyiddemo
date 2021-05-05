@@ -95,6 +95,10 @@ namespace easyIDDemo
                     e.SignInRequestMessage.AuthenticationType = "urn:grn:authn:se:bankid:another-device";
                     e.SignInRequestMessage.HomeRealm = "sbid";
                 }
+                else if (authMethod == "sbid-qr")
+                {
+                    e.SignInRequestMessage.AuthenticationType = "urn:grn:authn:se:bankid:another-device:qr";
+                }
                 else if (authMethod == "sbid-local")
                 {
                     e.SignInRequestMessage.AuthenticationType = "urn:grn:authn:se:bankid:same-device";

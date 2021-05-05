@@ -58,6 +58,12 @@ namespace easyIDDemo
                         AuthHint =  "You'll need to install the official BankId mobile app on your device, and configure it to access the test system",
                         MoreDetails = "https://www.bankid.com/assets/bankid/rp/how-to-get-bankid-for-test-v1.5.pdf"
                     } },
+                { "sbid-qr",
+                    new DetailInfo
+                    {
+                        AuthHint =  "You'll need to install the official BankId mobile app on your device, and configure it to access the test system",
+                        MoreDetails = "https://www.bankid.com/assets/bankid/rp/how-to-get-bankid-for-test-v1.5.pdf"
+                    } },
                 { "sbid-local",
                     new DetailInfo
                     {
@@ -173,7 +179,8 @@ namespace easyIDDemo
 
             var inProgress = new AuthMethodRendition[] {
                 new AuthMethodRendition { Name = "DK MitID low", Value = "dkmitid-low" },
-                new AuthMethodRendition { Name = "DK MitID subst", Value = "dkmitid-substantial" }
+                new AuthMethodRendition { Name = "DK MitID subst", Value = "dkmitid-substantial" },
+                new AuthMethodRendition { Name = "SE BankID QR", Value = "sbid-qr" }
             };
 
             return productionReady.Concat(inProgress).ToArray();
