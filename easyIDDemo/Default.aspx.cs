@@ -385,8 +385,6 @@ namespace easyIDDemo
             {
                 this.authMethod = this.DropDownList.SelectedValue;
                 new AuthMethodState().SetState(this.Response, this.authMethod);
-                new LanguageState().SetState(this.Response, this.DropDownListLanguage.SelectedValue);
-                new EstablishSsoSessionState().SetEnabled(this.Response, this.CheckBoxSingleSignOnSession.Checked);
             }
         }
     }

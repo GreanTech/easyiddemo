@@ -39,20 +39,6 @@
         </div>
     </div>
     <br />
-    <div class="row">
-        <div class="col-lg-2 col-xs-6">
-            <asp:DropDownList runat="server" AutoPostBack="true" ID="DropDownListLanguage"
-                CssClass="form-control" 
-                SelectMethod="GetLanguages" DataTextField="DisplayName" DataValueField="TwoLetterIsoCode" >
-            </asp:DropDownList>
-        </div>
-        <div class="col-lg-2 col-xs-6 form-control-static">
-            <asp:CheckBox runat="server" AutoPostBack="true" ID="CheckBoxSingleSignOnSession"
-                Text="Establish SSO"
-                Checked="true" />
-        </div>
-    </div>
-    <br />
     <script type="text/javascript" src="Scripts/userLoggedInListener.js"></script>
     <div class="row">
         <div class="col-lg-6">
