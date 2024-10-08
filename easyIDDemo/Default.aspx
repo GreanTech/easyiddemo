@@ -10,10 +10,20 @@
     <div class="row">
         
         <table class="table table-striped">
-            <thead><tr><th>Attribute</th><th>Type</th><th>Tech identifier</th></tr></thead>
+            <thead><tr><th>Type</th><th>Tech identifier</th><th>Seen in PROD</th><th>Attribute</th></tr></thead>
             <tbody>
                 <% foreach (var claim in this.Claims) { %>
-                    <tr><td><%=claim.Attribute%></td><td><%=claim.Type%></td><td><%=claim.TechIdentifier%></td></tr>
+                    <tr><td><%=claim.Type%></td><td><%=claim.TechIdentifier%></td><td><%=claim.ObservedInProduction%></td><td><%=claim.Attribute%></td></tr>
+                <% } %>
+            </tbody>
+        </table>
+
+        <h4>Missing attribute candidates (based on observed SAML assertion from PROD login</h4>
+        <table class="table table-striped">
+            <thead><tr><th>Tech identifier</th></tr></thead>
+            <tbody>
+                <% foreach(var missingAttribute in this.MaybeMissingAttributes) { %>
+                    <tr><td><%=missingAttribute.AsClaimType()%></td></tr>
                 <% } %>
             </tbody>
         </table>

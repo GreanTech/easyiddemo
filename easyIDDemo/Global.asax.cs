@@ -25,6 +25,21 @@ namespace easyIDDemo
             m.BaseUri = origBaseUri.Uri;
         }
 
+        private void Application_EndRequest(object sender, EventArgs args)
+        {
+            HttpApplication app = sender as HttpApplication;
+            if (app == null) return;
+
+            HttpCookieCollection cookies = app.Response.Cookies;
+            for (int i = 0; i < cookies.Count; i++)
+            {
+                var cookie = cookies[i];
+                cookie.Secure = true;
+                cookie.SameSite = SameSiteMode.None;
+                cookie.HttpOnly = true;
+            }
+        }
+
         void WSFederationAuthenticationModule_RedirectingToIdentityProvider(object sender, RedirectingToIdentityProviderEventArgs e)
         {
             var request = HttpContext.Current.Request;
@@ -51,6 +66,10 @@ namespace easyIDDemo
                         newHost = "easyid.www.grean.id";
                     else
                         newHost = "criipto-verify-no-sso.criipto.id";
+                }
+                else if (host == "localhost" || host == "easyid-demo-rules-migration.azurewebsites.net")
+                {
+                    newHost = "auth.greantech.net";
                 }
                 else if (!establishSsoSession)
                 {
@@ -98,6 +117,7 @@ namespace easyIDDemo
                 else if (authMethod == "sbid-qr")
                 {
                     e.SignInRequestMessage.AuthenticationType = "urn:grn:authn:se:bankid:another-device:qr";
+                    e.SignInRequestMessage.HomeRealm = "se-bankid";
                 }
                 else if (authMethod == "sbid-local")
                 {

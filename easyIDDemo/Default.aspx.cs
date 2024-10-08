@@ -1,16 +1,151 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.EnterpriseServices.Internal;
 using System.Linq;
 using System.Security.Claims;
 using System.Web.UI;
 
 namespace easyIDDemo
 {
+    public class SamlAttribute
+    {
+        public SamlAttribute(string attributeNamespace, string attributeName)
+        {
+            AttributeNamespace = attributeNamespace;
+            AttributeName = attributeName;
+        }
+
+        public string AttributeNamespace { get; }
+        public string AttributeName { get; }
+
+        public string AsClaimType()
+        {
+            return this.AttributeNamespace + "/" + this.AttributeName;
+        }
+    }
+
+    public class ObservedClaimTypes
+    {
+        public static SamlAttribute[] Production = new SamlAttribute[]
+        {
+                new SamlAttribute (
+                    attributeNamespace:"http://schemas.xmlsoap.org/ws/2005/05/identity/claims",
+                    attributeName:"nameidentifier"
+                ),
+                new SamlAttribute (
+                    attributeNamespace:"http://schemas.xmlsoap.org/ws/2005/05/identity/claims",
+                    attributeName:"name"
+                ),
+                new SamlAttribute (
+                    attributeNamespace:"http://schemas.xmlsoap.org/ws/2005/05/identity/claims",
+                    attributeName:"givenname"
+                ),
+                new SamlAttribute (
+                    attributeNamespace:"http://schemas.xmlsoap.org/ws/2005/05/identity/claims",
+                    attributeName:"surname"
+                ),
+                new SamlAttribute (
+                    attributeNamespace:"http://schemas.microsoft.com/ws/2008/06/identity/claims",
+                    attributeName:"role"
+                ),
+                new SamlAttribute (
+                    attributeNamespace:"http://schemas.trygghansa.se/2015/11/identity/claims",
+                    attributeName:"ssn"
+                ),
+                new SamlAttribute (
+                    attributeNamespace:"http://schemas.xmlsoap.org/ws/2005/05/identity/claims",
+                    attributeName:"upn"
+                ),
+                new SamlAttribute (
+                    attributeNamespace:"http://schemas.auth0.com/identities/default",
+                    attributeName:"provider"
+                ),
+                new SamlAttribute (
+                    attributeNamespace:"http://schemas.auth0.com/identities/default",
+                    attributeName:"connection"
+                ),
+                new SamlAttribute (
+                    attributeNamespace:"http://schemas.auth0.com/identities/default",
+                    attributeName:"isSocial"
+                ),
+                new SamlAttribute (
+                    attributeNamespace:"http://schemas.auth0.com",
+                    attributeName:"clientID"
+                ),
+                new SamlAttribute (
+                    attributeNamespace:"http://schemas.auth0.com",
+                    attributeName:"identityscheme"
+                ),
+                new SamlAttribute (
+                    attributeNamespace:"http://schemas.auth0.com",
+                    attributeName:"authenticationtype"
+                ),
+                new SamlAttribute (
+                    attributeNamespace:"http://schemas.auth0.com",
+                    attributeName:"loginid"
+                ),
+                new SamlAttribute (
+                    attributeNamespace:"http://schemas.auth0.com",
+                    attributeName:"sessionindex"
+                ),
+                new SamlAttribute (
+                    attributeNamespace:"http://schemas.auth0.com",
+                    attributeName:"ipaddress"),
+                new SamlAttribute (
+                    attributeNamespace:"http://schemas.auth0.com",
+                    attributeName:"country"
+                ),
+                new SamlAttribute (
+                    attributeNamespace:"http://schemas.auth0.com",
+                    attributeName:"picture"
+                ),
+                new SamlAttribute (
+                    attributeNamespace:"http://schemas.auth0.com",
+                    attributeName:"nickname"),
+                new SamlAttribute (
+                    attributeNamespace:"http://schemas.auth0.com",
+                    attributeName:"pseudonym"
+                ),
+                new SamlAttribute (
+                    attributeNamespace:"http://schemas.auth0.com",
+                    attributeName:"old_prefixes"
+                ),
+                new SamlAttribute (
+                    attributeNamespace:"http://schemas.auth0.com",
+                    attributeName:"gauss_id"
+                ),
+                new SamlAttribute (
+                    attributeNamespace:"http://schemas.auth0.com",
+                    attributeName:"id_token"
+                ),
+                new SamlAttribute ( attributeNamespace:"http://schemas.auth0.com",
+                    attributeName:"checked_in_gauss"
+                ),
+                new SamlAttribute (
+                    attributeNamespace:"http://schemas.auth0.com",
+                    attributeName:"idScheme"
+                ),
+                new SamlAttribute (
+                    attributeNamespace:"http://schemas.auth0.com",
+                    attributeName:"email_verified"
+                ),
+                new SamlAttribute (
+                    attributeNamespace:"http://schemas.auth0.com",
+                    attributeName:"updated_at"
+                ),
+                new SamlAttribute (
+                    attributeNamespace:"http://schemas.auth0.com",
+                    attributeName:"created_at"
+                )
+        };
+    }
+
     public class ClaimRendition
     {
         public string Attribute;
         public string Type;
         public string TechIdentifier;
+        public string ObservedInProduction;
     }
 
     public class AuthMethodRendition
@@ -27,13 +162,14 @@ namespace easyIDDemo
 
     public partial class _Default : Page
     {
-        private class DetailInfo {
+        private class DetailInfo
+        {
             public string AuthHint;
             public string MoreDetails;
         }
 
-        private readonly LanguageRendition [] languages = 
-            new [] 
+        private readonly LanguageRendition[] languages =
+            new[]
             {
                 new LanguageRendition { DisplayName = "English", TwoLetterIsoCode = "en" },
                 new LanguageRendition { DisplayName = "Svenska (sv)", TwoLetterIsoCode = "sv" },
@@ -49,7 +185,7 @@ namespace easyIDDemo
 
         public _Default()
         {
-            this.authMethod = "sbid";
+            this.authMethod = "sbid-qr";
             this.hints = new Dictionary<string, DetailInfo>
             {
                 { "sbid",
@@ -87,17 +223,17 @@ namespace easyIDDemo
                 { "dknemid-moces-codefile",
                     new DetailInfo
                     {
-                        AuthHint =  
+                        AuthHint =
                             "You'll need a browser that supports Java applets to use this particular authentication mechanism." +
-                            " IE 11 Desktop (<em>not</em> Edge) and Firefox on OS X have been known to work." + 
-                            " If you have already signed up for a TU agreement, you can use the test-administrator signature to create test users." + 
+                            " IE 11 Desktop (<em>not</em> Edge) and Firefox on OS X have been known to work." +
+                            " If you have already signed up for a TU agreement, you can use the test-administrator signature to create test users." +
                             "Or you can download some pre-cooked ones <a href=\"https://www.nets.eu/dk-da/kundeservice/nemid-tjenesteudbyder/NemID-tjenesteudbyderpakken/Pages/OCES-II-certifikat-eksempler.aspx\">here</a>",
                         MoreDetails = "https://www.nets.eu/dk-da/kundeservice/nemid-tjenesteudbyder/implementering"
                     } },
                 { "fi-tupas",
                     new DetailInfo
                     {
-                        AuthHint =  
+                        AuthHint =
                             "You can find test users <a href=\"http://docs.maksuturva.fi/fi/html/pages/4_2_1_verkkopankkien_testitunnukset.html\">here</a>" +
                             "There is also an English version <a href=\"http://docs.maksuturva.fi/en/html/pages/4_2_1_internet_banks__test_credentials.html?ms=EQAAIBA=&mw=NDAw&st=MA==&sct=MA==\">here</a>",
                         MoreDetails = "http://docs.maksuturva.fi"
@@ -160,20 +296,10 @@ namespace easyIDDemo
         public AuthMethodRendition[] GetAuthMethods()
         {
             var productionReady = new[] {
-                new AuthMethodRendition { Name = "SE BankID annan enhet", Value = "sbid" },
-                new AuthMethodRendition { Name = "SE BankID denna enhet", Value = "sbid-local" },
                 new AuthMethodRendition { Name = "SE BankID QR", Value = "sbid-qr" },
-                new AuthMethodRendition { Name = "NO BankID", Value = "nobid-oidc" },
-                new AuthMethodRendition { Name = "NO Vipps", Value = "no-vipps" },
-                new AuthMethodRendition { Name = "DK NemID privat", Value = "dknemid-poces" },
-                new AuthMethodRendition { Name = "DK NemID erhverv", Value = "dknemid-moces" },
-                new AuthMethodRendition { Name = "DK NemID nøglefil (erhverv)", Value = "dknemid-moces-codefile" },
-                new AuthMethodRendition { Name = "FI TUPAS", Value = "fi-tupas" },
-                new AuthMethodRendition { Name = "FI Mobiilivarmenne", Value = "fi-mobile-id" },
-                new AuthMethodRendition { Name = "FI all", Value = "fi-all" }
             };
 
-            if (this.Request.Url.Host == "www.grean.id")
+            if (this.Request.Url.Host == "www.grean.id" || this.Request.Url.Host == "easyid-demo-rules-migration.azurewebsites.net")
             {
                 return productionReady;
             }
@@ -186,7 +312,7 @@ namespace easyIDDemo
             return productionReady.Concat(inProgress).ToArray();
         }
 
-        public LanguageRendition [] GetLanguages()
+        public LanguageRendition[] GetLanguages()
         {
             return this.languages;
         }
@@ -226,13 +352,30 @@ namespace easyIDDemo
             }
         }
 
+        public IEnumerable<SamlAttribute> MaybeMissingAttributes
+        {
+            get
+            {
+                var cp = User as ClaimsPrincipal;
+                if (cp == null) return ObservedClaimTypes.Production;
+
+                return ObservedClaimTypes.Production.Where(sat =>
+                    !cp.FindAll(c => c.Type == sat.AsClaimType()).Any()
+                );
+            }
+        }
+
         private ClaimRendition ToClaimRendition(Claim claim)
         {
             return new ClaimRendition
             {
                 Attribute = claim.Value,
                 Type = claim.Type.Split('/', ':').Last(),
-                TechIdentifier = claim.Type
+                TechIdentifier = claim.Type,
+                ObservedInProduction =
+                    ObservedClaimTypes.Production
+                        .Where(sat => sat.AsClaimType() == claim.Type)
+                        .Any() ? "Yes" : ""
             };
         }
 
